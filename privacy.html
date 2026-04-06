@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Tragitto</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2B2D42; background: #FFFBF0; line-height: 1.7; }
+    .container { max-width: 720px; margin: 0 auto; padding: 60px 24px; }
+    h1 { font-size: 2rem; margin-bottom: 4px; }
+    .date { color: #8D99AE; margin-bottom: 32px; font-size: 0.9rem; }
+    h2 { font-size: 1.2rem; margin-top: 32px; margin-bottom: 8px; color: #FF8FAB; }
+    p, ul { margin-bottom: 16px; }
+    ul { padding-left: 24px; }
+    a { color: #83C5BE; }
+    footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #eee; color: #8D99AE; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="date">Last updated: April 6, 2026</p>
+
+    <p>Tragitto ("we", "our", "the app") is operated by Flatmap. This privacy policy explains what data we collect, how we use it, and your rights.</p>
+
+    <h2>1. Data We Collect</h2>
+    <p>When you use Tragitto, we collect:</p>
+    <ul>
+      <li><strong>Account information</strong> — your email address and name, used for authentication and displaying your identity to trip members.</li>
+      <li><strong>Trip data</strong> — trip titles, dates, timeline items, chat messages, and preferences you enter. This data is stored to provide the core trip planning functionality.</li>
+      <li><strong>Forwarded emails</strong> — booking confirmation emails you forward to your trip address. We extract booking details (dates, locations, references) and discard the raw email after processing.</li>
+      <li><strong>Device data</strong> — a local SQLite database on your device stores trip data for offline access. This data stays on your device.</li>
+    </ul>
+
+    <h2>2. How We Use Your Data</h2>
+    <ul>
+      <li><strong>Provide the service</strong> — store and sync trips, timeline items, and messages across your devices and with trip members.</li>
+      <li><strong>AI features</strong> — your trip data (titles, dates, preferences, timeline) is sent to Anthropic's Claude API to power the AI concierge and day planner. We do not send your email address or personal identity to the AI.</li>
+      <li><strong>Email parsing</strong> — forwarded booking emails are processed by our AI to extract structured booking details. Raw email content is stored temporarily for debugging and deleted after processing.</li>
+    </ul>
+
+    <h2>3. Data Sharing</h2>
+    <p>We do not sell your data. We share data only with:</p>
+    <ul>
+      <li><strong>Trip members</strong> — other users you invite to your trip can see trip data, timeline items, and chat messages.</li>
+      <li><strong>Anthropic (Claude API)</strong> — trip context is sent for AI features. See <a href="https://www.anthropic.com/privacy">Anthropic's privacy policy</a>.</li>
+      <li><strong>Google Cloud Platform</strong> — our infrastructure provider. Data is stored in the US region.</li>
+      <li><strong>Mailgun</strong> — for sending OTP login codes via email.</li>
+    </ul>
+
+    <h2>4. Data Retention</h2>
+    <p>Your data is retained as long as your account is active. If you delete a trip, all associated timeline items, messages, and preferences are permanently deleted. You can request full account deletion by contacting us.</p>
+
+    <h2>5. Security</h2>
+    <p>We use industry-standard security measures including encrypted connections (HTTPS/TLS), private database access (no public IP), JWT-based authentication, and secrets stored in Google Cloud Secret Manager.</p>
+
+    <h2>6. Your Rights</h2>
+    <p>You can:</p>
+    <ul>
+      <li>Access and export your trip data at any time through the app.</li>
+      <li>Delete individual trips or your entire account.</li>
+      <li>Request a copy of your data by contacting us.</li>
+    </ul>
+
+    <h2>7. Children</h2>
+    <p>Tragitto is not intended for children under 13. We do not knowingly collect data from children under 13.</p>
+
+    <h2>8. Changes</h2>
+    <p>We may update this policy. Significant changes will be communicated through the app or email.</p>
+
+    <h2>9. Contact</h2>
+    <p>Questions about this policy? Contact us at <a href="mailto:gabriel@flatmap.com.br">gabriel@flatmap.com.br</a>.</p>
+
+    <footer>
+      <p><a href="index.html">&larr; Back to Tragitto</a> &middot; &copy; 2026 Flatmap</p>
+    </footer>
+  </div>
+</body>
+</html>
