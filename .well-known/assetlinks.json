@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.flatmap.tripline",
+      "sha256_cert_fingerprints": [
+        "CD:A8:48:01:E3:6B:29:6A:AD:C0:60:4B:13:55:61:61:BB:0F:9C:72:BC:9B:50:53:BF:EE:A1:0E:6E:DC:4C:20"
+      ]
+    }
+  }
+]
