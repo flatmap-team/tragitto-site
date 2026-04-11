@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "DJK775ZAQ3.com.flatmap.tripline",
+        "paths": ["/join/*"]
+      }
+    ]
+  }
+}

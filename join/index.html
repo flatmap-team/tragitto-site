@@ -469,16 +469,38 @@
     const tokenMatch = path.match(/\/join\/([a-zA-Z0-9_-]+)/);
     const token = tokenMatch ? tokenMatch[1] : (params.get('t') || null);
 
-    // Play Store link (will open the app if installed via Android App Links later)
-    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.flatmap.tripline';
+    // Platform detection
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    const isAndroid = /Android/i.test(ua);
 
-    // We can't know from the static page if it's a safety/follower link or member link,
-    // so we show a warm generic invite. The app will handle the actual join logic.
+    // Store links
+    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.flatmap.tripline';
+    const appStoreUrl = 'https://apps.apple.com/app/tragitto/id0000000000'; // TODO: update with real App Store ID
+    const storeUrl = isIOS ? appStoreUrl : playStoreUrl;
+    const storeName = isIOS ? 'App Store' : 'Google Play';
+    const appSchemeUrl = token ? `tragitto://join/${token}` : null;
+
+    // Play Store icon SVG
+    const playIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>`;
+    // Apple icon SVG
+    const appleIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`;
+    const storeIcon = isIOS ? appleIcon : playIcon;
+
     const card = document.getElementById('invite-card');
     const hint = document.getElementById('hint-text');
 
+    // Try to open the app first (if token exists and on mobile)
+    if (token && (isIOS || isAndroid) && appSchemeUrl) {
+      // Attempt to open the app via custom URL scheme
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = appSchemeUrl;
+      document.body.appendChild(iframe);
+      setTimeout(() => iframe.remove(), 2000);
+    }
+
     if (!token) {
-      // No token — generic landing
       card.innerHTML = `
         <div class="invite-icon member">
           <svg viewBox="0 0 24 24" fill="none" stroke="#FF8FAB" stroke-width="2" stroke-linecap="round">
@@ -490,12 +512,12 @@
         <h1>Join a trip on Tragitto</h1>
         <p class="subtitle">Plan trips together, share bookings, and let AI handle the details.</p>
         <div class="divider"></div>
-        <a href="${playStoreUrl}" class="cta-btn member">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
-          Get Tragitto
+        <a href="${storeUrl}" class="cta-btn member">
+          ${storeIcon}
+          Get on ${storeName}
         </a>
       `;
-      hint.textContent = 'Available on Google Play';
+      hint.textContent = `Available on ${storeName}`;
     } else {
       card.innerHTML = `
         <div class="invite-icon safety">
@@ -532,12 +554,12 @@
 
         <div class="divider"></div>
 
-        <a href="${playStoreUrl}" class="cta-btn safety" id="open-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
+        <a href="${storeUrl}" class="cta-btn safety" id="open-btn">
+          ${storeIcon}
           Open in Tragitto
         </a>
       `;
-      hint.innerHTML = 'Free on Google Play &middot; Create an account to follow along';
+      hint.innerHTML = `Free on ${storeName} &middot; Create an account to follow along`;
     }
   </script>
 </body>
