@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tragitto</title>
   <script>
-    // GitHub Pages serves 404.html for all unknown paths.
-    // If the path starts with /join/, serve the join page content.
-    if (window.location.pathname.startsWith('/join/')) {
-      // Redirect to join page with the token preserved in a query param
-      // since GitHub Pages can't do server-side routing.
-      const token = window.location.pathname.split('/join/')[1];
-      window.location.replace('/join/?t=' + encodeURIComponent(token || ''));
+    var path = window.location.pathname;
+    // Detect language from URL path
+    var langMatch = path.match(/^\/(en|pt|es)\//);
+    var lang = langMatch ? langMatch[1] : null;
+
+    // If no language in path, detect from browser
+    if (!lang) {
+      lang = (navigator.language || 'en').split('-')[0].toLowerCase();
+      if (!['en', 'pt', 'es'].includes(lang)) lang = 'en';
+    }
+
+    // Handle /join/ paths (with or without language prefix)
+    var joinMatch = path.match(/\/join\/([a-zA-Z0-9_-]+)/);
+    if (joinMatch) {
+      var token = joinMatch[1];
+      window.location.replace('/' + lang + '/join/?t=' + encodeURIComponent(token));
+    } else if (path.startsWith('/join')) {
+      window.location.replace('/' + lang + '/join/');
     } else {
-      // Actual 404 — redirect to homepage
-      window.location.replace('/');
+      // Regular 404 — redirect to language homepage
+      window.location.replace('/' + lang + '/');
     }
   </script>
 </head>
