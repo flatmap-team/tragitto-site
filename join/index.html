@@ -490,14 +490,22 @@
     const card = document.getElementById('invite-card');
     const hint = document.getElementById('hint-text');
 
-    // Try to open the app first (if token exists and on mobile)
-    if (token && (isIOS || isAndroid) && appSchemeUrl) {
-      // Attempt to open the app via custom URL scheme
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = appSchemeUrl;
-      document.body.appendChild(iframe);
-      setTimeout(() => iframe.remove(), 2000);
+    // For the CTA button: try app first, fall back to store
+    // On iOS, use the custom URL scheme to open the app directly
+    const ctaUrl = (token && appSchemeUrl) ? appSchemeUrl : storeUrl;
+    const ctaLabel = (token && appSchemeUrl) ? 'Open in Tragitto' : `Get on ${storeName}`;
+
+    // Fallback: if app doesn't open within 1.5s, redirect to store
+    function openAppOrStore() {
+      if (!token || !appSchemeUrl) { window.location.href = storeUrl; return; }
+      const start = Date.now();
+      window.location.href = appSchemeUrl;
+      setTimeout(() => {
+        // If we're still here after 1.5s, the app didn't open — go to store
+        if (Date.now() - start < 2000) {
+          window.location.href = storeUrl;
+        }
+      }, 1500);
     }
 
     if (!token) {
@@ -512,9 +520,9 @@
         <h1>Join a trip on Tragitto</h1>
         <p class="subtitle">Plan trips together, share bookings, and let AI handle the details.</p>
         <div class="divider"></div>
-        <a href="${storeUrl}" class="cta-btn member">
+        <a href="#" onclick="openAppOrStore(); return false;" class="cta-btn member">
           ${storeIcon}
-          Get on ${storeName}
+          ${ctaLabel}
         </a>
       `;
       hint.textContent = `Available on ${storeName}`;
@@ -554,9 +562,9 @@
 
         <div class="divider"></div>
 
-        <a href="${storeUrl}" class="cta-btn safety" id="open-btn">
+        <a href="#" onclick="openAppOrStore(); return false;" class="cta-btn safety" id="open-btn">
           ${storeIcon}
-          Open in Tragitto
+          ${ctaLabel}
         </a>
       `;
       hint.innerHTML = `Free on ${storeName} &middot; Create an account to follow along`;
