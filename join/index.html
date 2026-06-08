@@ -8,24 +8,24 @@
   <meta property="og:title" content="You're Invited to Follow a Trip">
   <meta property="og:description" content="Someone shared their travel itinerary with you on Tragitto. Open the app to follow along.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23FF8FAB'/><circle cx='50' cy='38' r='8' fill='%2383C5BE'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23E07A5F'/><circle cx='50' cy='38' r='8' fill='%2381B29A'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pink: #FF8FAB;
-      --teal: #83C5BE;
-      --green: #06D6A0;
-      --cream: #FFFBF0;
-      --text: #2B2D42;
-      --muted: #8D99AE;
+      --terracotta: #E07A5F;
+      --sage: #81B29A;
+      --sage-alt: #81B29A;
+      --cream: #F4F1DE;
+      --text: #3D405B;
+      --muted: #7C7F94;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       color: var(--text);
       background: var(--cream);
       min-height: 100vh;
@@ -55,21 +55,21 @@
 
     .orb-1 {
       width: 300px; height: 300px;
-      background: rgba(255, 143, 171, 0.15);
+      background: rgba(224,122,95, 0.15);
       top: -80px; right: -60px;
       animation-delay: 0.2s;
     }
 
     .orb-2 {
       width: 250px; height: 250px;
-      background: rgba(131, 197, 190, 0.12);
+      background: rgba(129,178,154, 0.12);
       bottom: 10%; left: -50px;
       animation-delay: 0.5s;
     }
 
     .orb-3 {
       width: 180px; height: 180px;
-      background: rgba(6, 214, 160, 0.08);
+      background: rgba(129,178,154, 0.08);
       top: 40%; right: -30px;
       animation-delay: 0.8s;
     }
@@ -103,12 +103,12 @@
     .logo-mark svg {
       width: 56px;
       height: 56px;
-      filter: drop-shadow(0 4px 20px rgba(255, 143, 171, 0.25));
+      filter: drop-shadow(0 4px 20px rgba(224,122,95, 0.25));
     }
 
     .wordmark {
       margin-top: 8px;
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Fraunces', Georgia, serif;
       font-weight: 800;
       font-size: 22px;
       letter-spacing: -0.5px;
@@ -125,8 +125,8 @@
       border-radius: 24px;
       padding: 36px 28px 32px;
       box-shadow:
-        0 1px 3px rgba(43, 45, 66, 0.04),
-        0 8px 32px rgba(43, 45, 66, 0.06);
+        0 1px 3px rgba(61,64,91, 0.04),
+        0 8px 32px rgba(61,64,91, 0.06);
       opacity: 0;
       animation: cardIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
       text-align: center;
@@ -144,11 +144,11 @@
     }
 
     .invite-icon.safety {
-      background: linear-gradient(135deg, rgba(6, 214, 160, 0.12), rgba(131, 197, 190, 0.10));
+      background: linear-gradient(135deg, rgba(129,178,154, 0.12), rgba(129,178,154, 0.10));
     }
 
     .invite-icon.member {
-      background: linear-gradient(135deg, rgba(255, 143, 171, 0.12), rgba(255, 209, 102, 0.10));
+      background: linear-gradient(135deg, rgba(224,122,95, 0.12), rgba(242,204,143, 0.10));
     }
 
     .invite-icon svg {
@@ -167,11 +167,11 @@
     }
 
     .invite-icon.safety::before {
-      border: 2px solid rgba(6, 214, 160, 0.2);
+      border: 2px solid rgba(129,178,154, 0.2);
     }
 
     .invite-icon.member::before {
-      border: 2px solid rgba(255, 143, 171, 0.2);
+      border: 2px solid rgba(224,122,95, 0.2);
     }
 
     @keyframes pulseRing {
@@ -180,7 +180,7 @@
     }
 
     .invite-card h1 {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Fraunces', Georgia, serif;
       font-weight: 700;
       font-size: 26px;
       line-height: 1.2;
@@ -210,7 +210,7 @@
     }
 
     .feature-row + .feature-row {
-      border-top: 1px solid rgba(141, 153, 174, 0.08);
+      border-top: 1px solid rgba(124,127,148, 0.08);
     }
 
     .feature-dot {
@@ -224,9 +224,9 @@
       margin-top: 1px;
     }
 
-    .feature-dot.green { background: rgba(6, 214, 160, 0.12); }
-    .feature-dot.teal { background: rgba(131, 197, 190, 0.12); }
-    .feature-dot.pink { background: rgba(255, 143, 171, 0.12); }
+    .feature-dot.green { background: rgba(129,178,154, 0.12); }
+    .feature-dot.teal { background: rgba(129,178,154, 0.12); }
+    .feature-dot.pink { background: rgba(224,122,95, 0.12); }
 
     .feature-dot svg {
       width: 14px;
@@ -251,7 +251,7 @@
       width: 40px;
       height: 3px;
       border-radius: 2px;
-      background: linear-gradient(90deg, var(--pink), var(--teal));
+      background: linear-gradient(90deg, var(--terracotta), var(--sage));
       margin: 0 auto 24px;
       opacity: 0.5;
     }
@@ -266,7 +266,7 @@
       padding: 16px 24px;
       border: none;
       border-radius: 999px;
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Fraunces', Georgia, serif;
       font-weight: 700;
       font-size: 17px;
       color: white;
@@ -278,13 +278,13 @@
     }
 
     .cta-btn.safety {
-      background: linear-gradient(135deg, #06D6A0, #04B886);
-      box-shadow: 0 4px 20px rgba(6, 214, 160, 0.3);
+      background: linear-gradient(135deg, #81B29A, #04B886);
+      box-shadow: 0 4px 20px rgba(129,178,154, 0.3);
     }
 
     .cta-btn.member {
-      background: linear-gradient(135deg, #FF8FAB, #F07090);
-      box-shadow: 0 4px 20px rgba(255, 143, 171, 0.3);
+      background: linear-gradient(135deg, #E07A5F, #C8553D);
+      box-shadow: 0 4px 20px rgba(224,122,95, 0.3);
     }
 
     .cta-btn:hover {
@@ -337,7 +337,7 @@
     }
 
     .footer a {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Fraunces', Georgia, serif;
       font-size: 13px;
       color: var(--muted);
       text-decoration: none;
@@ -345,7 +345,7 @@
       transition: color 0.2s;
     }
 
-    .footer a:hover { color: var(--teal); }
+    .footer a:hover { color: var(--sage); }
 
     .footer .sep {
       display: inline-block;
@@ -423,15 +423,15 @@
 
   <!-- Floating decorative pins -->
   <svg class="float-pin pin-1" width="24" height="32" viewBox="0 0 24 32" fill="none">
-    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#FF8FAB"/>
-    <circle cx="12" cy="11" r="4" fill="#83C5BE"/>
+    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#E07A5F"/>
+    <circle cx="12" cy="11" r="4" fill="#81B29A"/>
   </svg>
   <svg class="float-pin pin-2" width="18" height="24" viewBox="0 0 24 32" fill="none">
-    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#83C5BE"/>
+    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#81B29A"/>
     <circle cx="12" cy="11" r="4" fill="white"/>
   </svg>
   <svg class="float-pin pin-3" width="14" height="18" viewBox="0 0 24 32" fill="none">
-    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#06D6A0"/>
+    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="#81B29A"/>
     <circle cx="12" cy="11" r="4" fill="white"/>
   </svg>
 
@@ -440,9 +440,9 @@
     <!-- Logo -->
     <div class="logo-mark">
       <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="56" fill="#FF8FAB" fill-opacity="0.08"/>
-        <path d="M60 28C46.2 28 35 39.2 35 53c0 22.5 25 42 25 42s25-19.5 25-42C85 39.2 73.8 28 60 28z" fill="#FF8FAB"/>
-        <circle cx="60" cy="50" r="10" fill="#83C5BE"/>
+        <circle cx="60" cy="60" r="56" fill="#E07A5F" fill-opacity="0.08"/>
+        <path d="M60 28C46.2 28 35 39.2 35 53c0 22.5 25 42 25 42s25-19.5 25-42C85 39.2 73.8 28 60 28z" fill="#E07A5F"/>
+        <circle cx="60" cy="50" r="10" fill="#81B29A"/>
         <circle cx="60" cy="50" r="5" fill="white" fill-opacity="0.6"/>
       </svg>
     </div>
@@ -511,7 +511,7 @@
     if (!token) {
       card.innerHTML = `
         <div class="invite-icon member">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#FF8FAB" stroke-width="2" stroke-linecap="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E07A5F" stroke-width="2" stroke-linecap="round">
             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
             <polyline points="10 17 15 12 10 7"/>
             <line x1="15" y1="12" x2="3" y2="12"/>
@@ -530,8 +530,8 @@
       card.innerHTML = `
         <div class="invite-icon safety">
           <svg viewBox="0 0 24 24" fill="none">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#06D6A0" fill-opacity="0.15" stroke="#06D6A0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 12l2 2 4-4" stroke="#06D6A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#81B29A" fill-opacity="0.15" stroke="#81B29A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="#81B29A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h1>You're invited to follow a trip</h1>
@@ -540,19 +540,19 @@
         <div class="features">
           <div class="feature-row">
             <div class="feature-dot green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#06D6A0" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#81B29A" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg>
             </div>
             <div class="feature-text">See their itinerary in real-time <span>— flights, hotels, activities</span></div>
           </div>
           <div class="feature-row">
             <div class="feature-dot teal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#83C5BE" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#81B29A" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg>
             </div>
             <div class="feature-text">Know where they are <span>— locations and times updated live</span></div>
           </div>
           <div class="feature-row">
             <div class="feature-dot pink">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#FF8FAB" stroke-width="2" stroke-linecap="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#E07A5F" stroke-width="2" stroke-linecap="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
             </div>

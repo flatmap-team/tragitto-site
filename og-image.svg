@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#FFFBF0"/>
-  <circle cx="200" cy="100" r="300" fill="rgba(255,143,171,0.06)"/>
-  <circle cx="1000" cy="500" r="250" fill="rgba(131,197,190,0.05)"/>
+  <rect width="1200" height="630" fill="#F4F1DE"/>
+  <circle cx="200" cy="100" r="300" fill="rgba(224,122,95,0.06)"/>
+  <circle cx="1000" cy="500" r="250" fill="rgba(129,178,154,0.05)"/>
 
   <!-- Logo -->
   <g transform="translate(500, 120)">
-    <circle cx="100" cy="100" r="90" fill="rgba(255,143,171,0.08)"/>
-    <path d="M100 40C77 40 58 59 58 82c0 36 42 68 42 68s42-32 42-68C142 59 123 40 100 40z" fill="#FF8FAB"/>
-    <circle cx="100" cy="76" r="16" fill="#83C5BE"/>
+    <circle cx="100" cy="100" r="90" fill="rgba(224,122,95,0.08)"/>
+    <path d="M100 40C77 40 58 59 58 82c0 36 42 68 42 68s42-32 42-68C142 59 123 40 100 40z" fill="#E07A5F"/>
+    <circle cx="100" cy="76" r="16" fill="#81B29A"/>
     <circle cx="100" cy="76" r="7" fill="white" fill-opacity="0.5"/>
   </g>
 
   <!-- Title -->
-  <text x="600" y="360" text-anchor="middle" font-family="Outfit, -apple-system, sans-serif" font-weight="800" font-size="64" fill="#2B2D42" letter-spacing="-2">Tragitto</text>
-  <text x="600" y="420" text-anchor="middle" font-family="Nunito, -apple-system, sans-serif" font-weight="500" font-size="28" fill="#8D99AE">Travel together, effortlessly.</text>
+  <text x="600" y="360" text-anchor="middle" font-family="Fraunces, Georgia, -apple-system, sans-serif" font-weight="800" font-size="64" fill="#3D405B" letter-spacing="-2">Tragitto</text>
+  <text x="600" y="420" text-anchor="middle" font-family="'DM Sans', -apple-system, sans-serif" font-weight="500" font-size="28" fill="#7C7F94">Travel together, effortlessly.</text>
 
   <!-- Feature pills -->
-  <rect x="220" y="470" width="180" height="40" rx="20" fill="#83C5BE"/>
-  <text x="310" y="496" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="600" font-size="16" fill="white">AI Concierge</text>
+  <rect x="220" y="470" width="180" height="40" rx="20" fill="#81B29A"/>
+  <text x="310" y="496" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="16" fill="white">AI Concierge</text>
 
-  <rect x="420" y="470" width="170" height="40" rx="20" fill="#FFD166"/>
-  <text x="505" y="496" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="600" font-size="16" fill="white">Smart Timeline</text>
+  <rect x="420" y="470" width="170" height="40" rx="20" fill="#F2CC8F"/>
+  <text x="505" y="496" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="16" fill="white">Smart Timeline</text>
 
-  <rect x="610" y="470" width="190" height="40" rx="20" fill="#06D6A0"/>
-  <text x="705" y="496" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="600" font-size="16" fill="white">Share for Safety</text>
+  <rect x="610" y="470" width="190" height="40" rx="20" fill="#81B29A"/>
+  <text x="705" y="496" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="16" fill="white">Share for Safety</text>
 
-  <rect x="820" y="470" width="170" height="40" rx="20" fill="#118AB2"/>
-  <text x="905" y="496" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="600" font-size="16" fill="white">Works Offline</text>
+  <rect x="820" y="470" width="170" height="40" rx="20" fill="#3D405B"/>
+  <text x="905" y="496" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="16" fill="white">Works Offline</text>
 </svg>
