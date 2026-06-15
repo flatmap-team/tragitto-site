@@ -1,0 +1,56 @@
+/* ===========================================================================
+   Tragitto — base element styles & helpers
+   Lightweight resets and a few primitives the cards / kits rely on.
+   =========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--surface-canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--text-link); text-decoration: none; }
+
+button { font-family: inherit; }
+
+::selection { background: var(--terracotta-200); color: var(--slate-900); }
+
+/* Signature sparkle-on-gradient avatar puck used across the brand */
+.tg-ai-puck {
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-round);
+  background: var(--gradient-ai);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Reusable card surface */
+.tg-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--pad-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tragitto — Hero</title>
+<link rel="stylesheet" href="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/tokens/colors.css">
+<link rel="stylesheet" href="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/tokens/typography.css">
+<link rel="stylesheet" href="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/tokens/base.css">
+<link rel="stylesheet" href="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/tragitto-design-system-b33cbc7a-72cb-4383-844d-6bdec0cd80c2/_ds_bundle.js"></script>
+<script src="video/i18n.js"></script>
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search).get("lang");
+    window.__TG_LANG = (q && window.TG_I18N && window.TG_I18N[q]) ? q : "pt";
+    document.documentElement.lang = window.__TG_LANG === "pt" ? "pt-BR" : window.__TG_LANG;
+  })();
+</script>
+<style>
+  /* The embed fills its container; the cream canvas blends with any letterbox.
+     Drop into a page via:  <iframe src="hero/?lang=en"
+       style="width:420px;height:760px;border:0;border-radius:28px"></iframe>
+     Size the frame near a 9:16 ratio to avoid side bars. */
+  html, body { margin: 0; height: 100%; background: var(--cream); }
+  #root { position: fixed; inset: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="animations.jsx"></script>
+<script type="text/babel" src="video/icons.jsx"></script>
+<script type="text/babel" src="video/scenes.jsx"></script>
+<script type="text/babel" src="video/app.jsx"></script>
+<script type="text/babel" data-presets="react">
+  // Chrome-less autoplay-loop player: provides the timeline context, runs its
+  // own rAF clock, scales the fixed canvas to fit the container, and honors
+  // prefers-reduced-motion by holding a representative still.
+  const W = 1080, H = 1920;
+  const REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function HeroPlayer() {
+    const duration = window.TragittoVideo.DURATION;
+    const [time, setTime] = React.useState(REDUCE ? 16.8 : 0);
+    const [scale, setScale] = React.useState(0.3);
+    const ref = React.useRef(null);
+
+    React.useEffect(() => {
+      if (REDUCE) return;
+      let raf, last = null, on = true;
+      const step = (ts) => {
+        if (!on) return;
+        if (last == null) last = ts;
+        const dt = (ts - last) / 1000; last = ts;
+        setTime((t) => { let n = t + dt; if (n >= duration) n = n % duration; return n; });
+        raf = requestAnimationFrame(step);
+      };
+      raf = requestAnimationFrame(step);
+      return () => { on = false; cancelAnimationFrame(raf); };
+    }, [duration]);
+
+    React.useEffect(() => {
+      const el = ref.current; if (!el) return;
+      const measure = () => {
+        const s = Math.min(el.clientWidth / W, el.clientHeight / H);
+        setScale(s > 0 ? s : 1);
+      };
+      measure();
+      const ro = new ResizeObserver(measure);
+      ro.observe(el);
+      window.addEventListener("resize", measure);
+      return () => { ro.disconnect(); window.removeEventListener("resize", measure); };
+    }, []);
+
+    const ctx = React.useMemo(
+      () => ({ time, duration, playing: !REDUCE, setTime, setPlaying: () => {} }),
+      [time, duration]
+    );
+
+    return (
+      <div ref={ref} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "var(--cream)" }}>
+        <div style={{ width: W, height: H, transform: `scale(${scale})`, transformOrigin: "center", flexShrink: 0, position: "relative" }}>
+          <window.TimelineContext.Provider value={ctx}>
+            <window.TragittoVideo.Scene></window.TragittoVideo.Scene>
+          </window.TimelineContext.Provider>
+        </div>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<HeroPlayer></HeroPlayer>);
+</script>
+</body>
+</html>
