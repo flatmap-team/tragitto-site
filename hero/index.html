@@ -46,7 +46,7 @@
   const REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function HeroPlayer() {
-    const duration = window.TragittoVideo.DURATION;
+    const duration = window.TragittoVideo.HERO_DURATION || window.TragittoVideo.DURATION;
     const [time, setTime] = React.useState(REDUCE ? 16.8 : 0);
     const [scale, setScale] = React.useState(0.3);
     const ref = React.useRef(null);
@@ -87,7 +87,7 @@
       <div ref={ref} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "var(--cream)" }}>
         <div style={{ width: W, height: H, transform: `scale(${scale})`, transformOrigin: "center", flexShrink: 0, position: "relative" }}>
           <window.TimelineContext.Provider value={ctx}>
-            <window.TragittoVideo.Scene></window.TragittoVideo.Scene>
+            {React.createElement((window.TragittoVideo.HeroScene || window.TragittoVideo.Scene))}
           </window.TimelineContext.Provider>
         </div>
       </div>
