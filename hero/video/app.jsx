@@ -221,7 +221,7 @@ function HeroScene() {
   const B = BEATS;
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",
-      background: "radial-gradient(120% 80% at 50% 0%, var(--cream) 0%, var(--cream-deep) 70%)" }}>
+      background: "transparent" }}>
       <div style={{ width: 390, height: 844, transform: "scale(2.12)", transformOrigin: "center", position: "relative", flexShrink: 0 }}>
         <window.PhoneShell>
           <window.Layer start={B[0].t0} end={B[0].t1} z={1}><window.TripsScreen liftIndex={-1}></window.TripsScreen></window.Layer>
