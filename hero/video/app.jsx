@@ -63,13 +63,14 @@ function ToastOverlay({ at, until, icon }) {
   );
 }
 
-function FollowerOverlay({ t0 }) {
+function FollowerOverlay({ t0, until = Infinity }) {
   const t = useTime();
-  if (t < t0 - 0.3) return null;
+  if (t < t0 - 0.3 || t > until + 0.5) return null;
   const inn = clamp((t - t0) / 0.5, 0, 1);
-  const ty = lerpV(140, 0, E.easeOutBack(inn));
+  const out = until !== Infinity && t > until ? clamp((t - until) / 0.5, 0, 1) : 0;
+  const ty = lerpV(140, 0, E.easeOutBack(inn)) + out * 60;
   return (
-    <div style={{ position: "absolute", left: 14, right: 14, bottom: 22, opacity: clamp(inn * 1.4, 0, 1),
+    <div style={{ position: "absolute", left: 14, right: 14, bottom: 22, opacity: clamp(inn * 1.4, 0, 1) * (1 - out),
       transform: `translateY(${ty}px)`, zIndex: 45 }}>
       <div style={{ background: "var(--surface-raised)", borderRadius: 22, boxShadow: "0 26px 60px -22px rgba(44,46,68,0.5)",
         padding: "16px 18px", display: "flex", alignItems: "center", gap: 14 }}>
@@ -196,4 +197,47 @@ function Scene() {
   );
 }
 
-window.TragittoVideo = { Scene, DURATION };
+/* ----- hero scene (landing-page loop) ------------------------------------
+   Phone content only — no captions, no end card, no beat dots. The phone is
+   enlarged and centered, and the last beat crossfades back to the first screen
+   so the time-reset loop is seamless. */
+
+const HERO_DURATION = 24.6;          // beats run 0→22.6, then ~2s loop-return
+
+function HeroReturn() {
+  // Re-shows the Trips screen on top as the final beat ends, landing fully
+  // opaque at the wrap so t=HERO_DURATION matches t=0.
+  const t = useTime();
+  const inn = clamp((t - 22.7) / 1.1, 0, 1);          // fade in 22.7 → 23.8
+  if (inn <= 0.001) return null;
+  return (
+    <div style={{ position: "absolute", inset: 0, opacity: inn, zIndex: 6, background: "var(--surface-canvas)" }}>
+      <window.TripsScreen liftIndex={-1}></window.TripsScreen>
+    </div>
+  );
+}
+
+function HeroScene() {
+  const B = BEATS;
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",
+      background: "radial-gradient(120% 80% at 50% 0%, var(--cream) 0%, var(--cream-deep) 70%)" }}>
+      <div style={{ width: 390, height: 844, transform: "scale(2.12)", transformOrigin: "center", position: "relative", flexShrink: 0 }}>
+        <window.PhoneShell>
+          <window.Layer start={B[0].t0} end={B[0].t1} z={1}><window.TripsScreen liftIndex={-1}></window.TripsScreen></window.Layer>
+          <window.Layer start={B[1].t0} end={B[1].t1} z={2}><ChatBeat t0={B[1].t0}></ChatBeat></window.Layer>
+          <window.Layer start={B[2].t0} end={B[2].t1} z={3}><TimelineBeat t0={B[2].t0}></TimelineBeat></window.Layer>
+          <window.Layer start={B[3].t0} end={B[3].t1 + 0.3} z={4}><window.TimelineScreen visible={5} pct={86} group></window.TimelineScreen></window.Layer>
+          <HeroReturn></HeroReturn>
+        </window.PhoneShell>
+
+        <EmailOverlay t0={B[0].t0 + 0.8}></EmailOverlay>
+        <ToastOverlay at={B[0].t0 + 4.4} until={B[0].t1 - 0.3} icon="check"></ToastOverlay>
+        <FollowerOverlay t0={B[3].t0 + 1.4} until={22.5}></FollowerOverlay>
+      </div>
+      <Probe></Probe>
+    </div>
+  );
+}
+
+window.TragittoVideo = { Scene, DURATION, HeroScene, HERO_DURATION };
