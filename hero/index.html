@@ -27,7 +27,7 @@
      Drop into a page via:  <iframe src="hero/?lang=en"
        style="width:420px;height:760px;border:0;border-radius:28px"></iframe>
      Size the frame near a 9:16 ratio to avoid side bars. */
-  html, body { margin: 0; height: 100%; background: var(--cream); }
+  html, body { margin: 0; height: 100%; background: transparent; }
   #root { position: fixed; inset: 0; }
 </style>
 </head>
@@ -84,7 +84,7 @@
     );
 
     return (
-      <div ref={ref} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "var(--cream)" }}>
+      <div ref={ref} style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "transparent" }}>
         <div style={{ width: W, height: H, transform: `scale(${scale})`, transformOrigin: "center", flexShrink: 0, position: "relative" }}>
           <window.TimelineContext.Provider value={ctx}>
             {React.createElement((window.TragittoVideo.HeroScene || window.TragittoVideo.Scene))}
