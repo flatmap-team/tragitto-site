@@ -1,0 +1,15 @@
+/* ===========================================================================
+   Tragitto — Webfonts
+   ---------------------------------------------------------------------------
+   FONT SUBSTITUTION NOTE (flagged to the user):
+   The Tragitto app ships in a native iOS/Android build; the exact bundled
+   font binaries were not provided. Based on the screenshots the brand uses a
+   high-contrast display serif + a humanist UI sans. We have matched them to
+   the closest Google Fonts:
+       Display serif  ->  Playfair Display   (headings, trip names, dates-italic)
+       UI / body sans ->  Mulish             (interface text, numerals)
+   If the production app uses different faces, send the .ttf/.woff2 files and
+   we'll swap these @import lines for self-hosted @font-face rules.
+   =========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap");

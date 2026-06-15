@@ -1,0 +1,118 @@
+/* ===========================================================================
+   Tragitto — Color tokens
+   Terracotta palette derived from the brand's coolors set:
+   F4F1DE · E07A5F · 3D405B · 81B29A · F2CC8F
+   =========================================================================== */
+
+:root {
+  /* --- Brand core (raw values) ------------------------------------------- */
+  --terracotta:        #e07a5f;  /* primary action / brand */
+  --slate:             #3d405b;  /* ink, headings */
+  --sage:              #81b29a;  /* secondary, success, AI accent */
+  --sand:              #f2cc8f;  /* tertiary, transport, highlight */
+  --eggshell:          #f4f1de;  /* canvas / app background */
+
+  /* --- Terracotta scale -------------------------------------------------- */
+  --terracotta-50:   oklch(0.965 0.018 38);
+  --terracotta-100:  oklch(0.928 0.040 38);
+  --terracotta-200:  oklch(0.878 0.066 37);
+  --terracotta-300:  oklch(0.818 0.090 36);
+  --terracotta-400:  oklch(0.752 0.110 35);
+  --terracotta-500:  #e07a5f;                 /* base */
+  --terracotta-600:  oklch(0.640 0.118 34);
+  --terracotta-700:  oklch(0.555 0.104 33);
+  --terracotta-800:  oklch(0.460 0.084 32);
+
+  /* --- Sage scale -------------------------------------------------------- */
+  --sage-50:   oklch(0.970 0.012 158);
+  --sage-100:  oklch(0.938 0.028 158);
+  --sage-200:  oklch(0.890 0.044 158);
+  --sage-300:  oklch(0.832 0.054 158);
+  --sage-400:  oklch(0.772 0.058 158);
+  --sage-500:  #81b29a;                       /* base */
+  --sage-600:  oklch(0.620 0.058 159);
+  --sage-700:  oklch(0.510 0.050 160);
+
+  /* --- Sand scale -------------------------------------------------------- */
+  --sand-50:   oklch(0.980 0.018 84);
+  --sand-100:  oklch(0.955 0.040 84);
+  --sand-200:  oklch(0.918 0.072 83);
+  --sand-300:  oklch(0.878 0.094 82);
+  --sand-500:  #f2cc8f;                        /* base */
+  --sand-600:  oklch(0.770 0.106 80);
+  --sand-700:  oklch(0.640 0.094 76);
+
+  /* --- Slate / neutral scale (warm-tinted) ------------------------------- */
+  --slate-900:  #2c2e44;
+  --slate-800:  #3d405b;                       /* base ink */
+  --slate-700:  oklch(0.430 0.034 285);
+  --slate-600:  oklch(0.520 0.030 285);
+  --slate-500:  oklch(0.605 0.024 285);        /* muted text */
+  --slate-400:  oklch(0.700 0.018 285);        /* placeholder */
+  --slate-300:  oklch(0.800 0.012 285);
+  --slate-200:  oklch(0.888 0.010 90);         /* hairline borders */
+  --slate-100:  oklch(0.940 0.010 90);
+
+  /* --- Warm neutrals / surfaces ------------------------------------------ */
+  --cream:        #faf7ed;   /* card / sheet surface */
+  --cream-deep:   #f4f1de;   /* app canvas */
+  --cream-sunk:   #efeada;   /* sunken / input fill */
+  --white:        #ffffff;
+
+  /* =======================================================================
+     Semantic aliases — use these in components
+     ======================================================================= */
+
+  /* Text */
+  --text-strong:     var(--slate-800);
+  --text-body:       var(--slate-700);
+  --text-muted:      var(--slate-500);
+  --text-placeholder:var(--slate-400);
+  --text-on-brand:   #fcf6f2;
+  --text-on-dark:    #f4f1de;
+  --text-brand:      var(--terracotta-600);
+  --text-link:       var(--terracotta-600);
+
+  /* Surfaces */
+  --surface-canvas:  var(--cream-deep);
+  --surface-card:    var(--cream);
+  --surface-raised:  var(--white);
+  --surface-sunk:    var(--cream-sunk);
+  --surface-overlay: rgba(44, 46, 68, 0.32);
+
+  /* Brand / actions */
+  --brand:           var(--terracotta-500);
+  --brand-hover:     var(--terracotta-600);
+  --brand-press:     var(--terracotta-700);
+  --brand-soft:      var(--terracotta-100);
+  --brand-soft-text: var(--terracotta-700);
+
+  /* Secondary (sage) */
+  --secondary:       var(--sage-500);
+  --secondary-soft:  var(--sage-100);
+  --secondary-text:  var(--sage-700);
+
+  /* Borders / lines */
+  --border-subtle:   rgba(61, 64, 91, 0.08);
+  --border-default:  rgba(61, 64, 91, 0.14);
+  --border-strong:   rgba(61, 64, 91, 0.24);
+  --border-brand:    rgba(224, 122, 95, 0.40);
+
+  /* Status */
+  --success:         var(--sage-600);
+  --success-soft:    var(--sage-100);
+  --warning:         var(--sand-700);
+  --warning-soft:    var(--sand-100);
+  --danger:          #c0492f;
+  --danger-soft:     oklch(0.928 0.040 32);
+  --info:            var(--slate-700);
+
+  /* Focus ring */
+  --focus-ring:      rgba(224, 122, 95, 0.45);
+
+  /* --- Signature AI gradient (agent avatar, header, FAB glow) ------------ */
+  --gradient-ai:        linear-gradient(120deg, var(--sage-500) 0%, var(--terracotta-500) 100%);
+  --gradient-ai-soft:   linear-gradient(120deg, var(--sage-300) 0%, var(--terracotta-300) 100%);
+  --gradient-header:    linear-gradient(110deg, var(--sage-500) 0%, var(--terracotta-400) 100%);
+  --gradient-warm-fade: linear-gradient(180deg, var(--terracotta-100) 0%, var(--cream-deep) 60%);
+}
