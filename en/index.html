@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Tragitto — Forward your bookings, we do the rest</title>
-  <meta name="description" content="Tragitto reads your flight, hotel, and activity confirmations and turns them into a shared, smart trip timeline. Free, with AI planning and offline support.">
+  <meta name="description" content="Plan trips together for free with a shared, smart timeline. Add the AI Concierge per trip to forward your bookings and auto-plan your days.">
   <meta property="og:title" content="Tragitto — Forward your bookings, we do the rest">
-  <meta property="og:description" content="Tragitto reads your flight, hotel, and activity confirmations and turns them into a shared, smart trip timeline. Free, with AI planning and offline support.">
+  <meta property="og:description" content="Plan trips together for free with a shared, smart timeline. Add the AI Concierge per trip to forward your bookings and auto-plan your days.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tragitto.app/en/">
   <link rel="alternate" hreflang="en" href="https://tragitto.app/en/">
@@ -139,6 +139,34 @@
     .feature-icon svg{width:22px;height:22px}
     .feature-card h3{font-size:17px;font-weight:700;margin-bottom:4px}
     .feature-card p{color:var(--muted);font-size:14px;line-height:1.5}
+
+    /* ---- PREMIUM BADGE (on feature cards) ---- */
+    .feat-badge{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 9px;border-radius:999px;
+      background:linear-gradient(135deg,rgba(224,122,95,0.14),rgba(242,204,143,0.22));color:#B07D3A;
+      font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;vertical-align:middle;text-transform:uppercase}
+    .feature-card h3{display:flex;align-items:center;flex-wrap:wrap}
+
+    /* ---- PRICING ---- */
+    .pricing{padding:100px 0;position:relative}
+    .pricing::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,127,148,0.12),transparent)}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;align-items:stretch}
+    .price-card{background:var(--surface);border-radius:24px;padding:36px 32px;display:flex;flex-direction:column;border:1px solid rgba(124,127,148,0.10)}
+    .price-card.featured{border:2px solid var(--terracotta);box-shadow:0 16px 48px rgba(224,122,95,0.12);position:relative}
+    .price-tier{font-family:'Fraunces',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted)}
+    .price-card.featured .price-tier{color:var(--terracotta)}
+    .price-amount{font-family:'Fraunces',sans-serif;font-weight:800;font-size:44px;letter-spacing:-1px;margin:10px 0 2px;display:flex;align-items:baseline;gap:8px}
+    .price-amount .per{font-size:16px;font-weight:600;color:var(--muted);letter-spacing:0}
+    .price-amount .zero{font-size:44px}
+    .price-badge{display:inline-block;margin-bottom:18px;padding:4px 12px;border-radius:999px;background:rgba(242,204,143,0.22);color:#B07D3A;font-size:12px;font-weight:700;letter-spacing:.3px}
+    .price-tagline{color:var(--muted);font-size:15px;margin-bottom:22px;font-weight:500;min-height:44px}
+    .price-feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px;flex:1}
+    .price-feats li{display:flex;align-items:flex-start;gap:10px;font-size:15px;font-weight:500;line-height:1.5}
+    .price-feats svg{width:18px;height:18px;min-width:18px;margin-top:2px;color:var(--sage)}
+    .price-card.featured .price-feats svg{color:var(--terracotta)}
+    .price-feats .pf-strong{font-weight:700}
+    .price-note{font-size:13px;color:var(--muted);line-height:1.5;margin-top:14px}
+    .price-cta{margin-top:auto}
+    @media(max-width:768px){.pricing-grid{grid-template-columns:1fr}.price-tagline{min-height:0}}
 
     /* ---- HERO FREE PILL ---- */
     .hero-free-pill{display:flex;justify-content:flex-start}
@@ -298,12 +326,12 @@
         </g>
       </svg>
     </div>
-    <h1>Forward your bookings. <span class="accent">We do the rest.</span></h1>
-    <p class="hero-sub">Tragitto reads your flight, hotel, and activity confirmations and turns them into a shared, smart timeline. AI helps you plan; everyone stays in sync.</p>
+    <h1>Plan trips together. <span class="accent">Effortlessly.</span></h1>
+    <p class="hero-sub">Build a shared, smart timeline — free. Add the AI Concierge to forward your bookings and let it plan your days, trip by trip.</p>
     <div class="hero-free-pill" style="margin-bottom:14px;opacity:0;animation:riseIn .8s cubic-bezier(.22,1,.36,1) .5s forwards">
       <span class="pill pill-green">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg>
-        Free · No ads
+        Free to start · Premium per trip
       </span>
     </div>
     <div class="hero-ctas store-badges">
@@ -316,7 +344,7 @@
     </div>
     <div class="cta-reassure">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> No account needed</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Free forever</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Free to plan together</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> 30 seconds to set up</span>
     </div>
     </div>
@@ -389,7 +417,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
         <div>
-          <h3>AI Concierge</h3>
+          <h3>AI Concierge <span class="feat-badge">Premium</span></h3>
           <p>Chat with your trip assistant. It plans your day, suggests restaurants, and respects your budget and preferences.</p>
         </div>
       </div>
@@ -398,7 +426,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#B07D3A" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <div>
-          <h3>Booking Ingestion</h3>
+          <h3>Booking Ingestion <span class="feat-badge">Premium</span></h3>
           <p>Forward confirmation emails and bookings are automatically parsed and added to your shared timeline.</p>
         </div>
       </div>
@@ -480,6 +508,50 @@
   </div>
 </section>
 
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-title">Free to plan.<br>Premium to autopilot.</h2>
+      <p class="section-sub">Plan every trip together for free. Unlock the AI Concierge and booking forwarding per trip — only when you want them.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-d1">
+        <div class="price-tier">Free</div>
+        <div class="price-amount"><span class="zero">$0</span><span class="per">forever</span></div>
+        <div class="price-badge" style="background:var(--sage-soft);color:#5E8C77">No account needed</div>
+        <p class="price-tagline">Everything you need to plan a trip together.</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Create trips &amp; build your timeline by hand</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Invite companions &amp; share in real time</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Push notifications &amp; offline access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Export as PDF</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Share-for-Safety with loved ones</li>
+        </ul>
+        <div class="price-cta">
+          <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn btn-outline" style="width:100%;justify-content:center">Start free</a>
+        </div>
+      </div>
+      <div class="price-card featured reveal reveal-d2">
+        <div class="price-tier">Premium · per trip</div>
+        <div class="price-amount">$9.99<span class="per">/ trip</span></div>
+        <div class="price-badge">Beta price</div>
+        <p class="price-tagline">Let Tragitto build and plan the trip for you.</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> <span class="pf-strong">Everything in Free, plus:</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> <span class="pf-strong">AI Concierge</span> — plans your days, restaurants &amp; routes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> <span class="pf-strong">Email &amp; booking forwarding</span> — auto-builds your timeline</li>
+        </ul>
+        <p class="price-note">Unlocks when you create the trip and stays active until just after it ends. Includes a generous AI allowance per trip — top up anytime if you need more.</p>
+        <div class="price-cta">
+          <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn btn-primary" style="width:100%;justify-content:center">Get the app</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SAFETY -->
 <section class="safety" id="safety">
   <div class="container">
@@ -531,7 +603,15 @@
     <div class="faq-list">
       <details class="faq-item reveal reveal-d1">
         <summary>Is Tragitto free?</summary>
-        <p>Yes. The core trip-planning experience — timeline, booking ingestion, AI Concierge, and group sharing — is free. We may introduce optional premium features later, but never lock the basics.</p>
+        <p>Yes — planning is free. Download the app, create trips, build your timeline by hand, invite companions, and share in real time at no cost. The <strong>AI Concierge</strong> and <strong>email &amp; booking forwarding</strong> are Premium, unlocked per trip.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>What does Premium cost?</summary>
+        <p>Premium is <strong>$9.99 per trip</strong> during our beta. It unlocks the AI Concierge and booking forwarding for that trip, and includes a generous AI allowance. If you need more, you can top up tokens anytime.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>When does Premium activate and expire?</summary>
+        <p>Premium activates the moment you create the trip and stays active until shortly after the trip ends — so it's there throughout your planning and travel. Each new trip is its own purchase.</p>
       </details>
       <details class="faq-item reveal reveal-d1">
         <summary>Do my travel companions need to install the app?</summary>
@@ -562,7 +642,7 @@
   <div class="container">
     <div class="cta-banner reveal">
       <h2>Your next trip starts here.</h2>
-      <p>Free to use. No ads.</p>
+      <p>Free to plan together · Premium from $9.99 per trip.</p>
       <div class="cta-banner-ctas">
         <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
@@ -604,7 +684,7 @@
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-text">Travel together, effortlessly.<small>Free · No ads · No account needed</small></div>
+  <div class="sticky-cta-text">Plan trips together.<small>Free to start · Premium per trip</small></div>
   <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn btn-primary">Get the App</a>
 </div>
 
