@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Tragitto — Encaminhe suas reservas, a gente cuida do resto</title>
-  <meta name="description" content="O Tragitto lê seus emails de confirmação e transforma tudo num roteiro compartilhado. Grátis, com IA e suporte offline.">
+  <meta name="description" content="Planeje viagens em grupo de graça com um roteiro compartilhado e inteligente. Ative o Concierge IA por viagem para encaminhar suas reservas e planejar seus dias.">
   <meta property="og:title" content="Tragitto — Encaminhe suas reservas, a gente cuida do resto">
-  <meta property="og:description" content="O Tragitto lê seus emails de confirmação e transforma tudo num roteiro compartilhado. Grátis, com IA e suporte offline.">
+  <meta property="og:description" content="Planeje viagens em grupo de graça com um roteiro compartilhado e inteligente. Ative o Concierge IA por viagem para encaminhar suas reservas e planejar seus dias.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tragitto.app/pt/">
   <link rel="alternate" hreflang="pt-BR" href="https://tragitto.app/en/">
@@ -139,6 +139,34 @@
     .feature-icon svg{width:22px;height:22px}
     .feature-card h3{font-size:17px;font-weight:700;margin-bottom:4px}
     .feature-card p{color:var(--muted);font-size:14px;line-height:1.5}
+
+    /* ---- PREMIUM BADGE (on feature cards) ---- */
+    .feat-badge{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 9px;border-radius:999px;
+      background:linear-gradient(135deg,rgba(224,122,95,0.14),rgba(242,204,143,0.22));color:#B07D3A;
+      font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;vertical-align:middle;text-transform:uppercase}
+    .feature-card h3{display:flex;align-items:center;flex-wrap:wrap}
+
+    /* ---- PRICING ---- */
+    .pricing{padding:100px 0;position:relative}
+    .pricing::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,127,148,0.12),transparent)}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;align-items:stretch}
+    .price-card{background:var(--surface);border-radius:24px;padding:36px 32px;display:flex;flex-direction:column;border:1px solid rgba(124,127,148,0.10)}
+    .price-card.featured{border:2px solid var(--terracotta);box-shadow:0 16px 48px rgba(224,122,95,0.12);position:relative}
+    .price-tier{font-family:'Fraunces',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted)}
+    .price-card.featured .price-tier{color:var(--terracotta)}
+    .price-amount{font-family:'Fraunces',sans-serif;font-weight:800;font-size:44px;letter-spacing:-1px;margin:10px 0 2px;display:flex;align-items:baseline;gap:8px}
+    .price-amount .per{font-size:16px;font-weight:600;color:var(--muted);letter-spacing:0}
+    .price-amount .zero{font-size:44px}
+    .price-badge{display:inline-block;margin-bottom:18px;padding:4px 12px;border-radius:999px;background:rgba(242,204,143,0.22);color:#B07D3A;font-size:12px;font-weight:700;letter-spacing:.3px}
+    .price-tagline{color:var(--muted);font-size:15px;margin-bottom:22px;font-weight:500;min-height:44px}
+    .price-feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px;flex:1}
+    .price-feats li{display:flex;align-items:flex-start;gap:10px;font-size:15px;font-weight:500;line-height:1.5}
+    .price-feats svg{width:18px;height:18px;min-width:18px;margin-top:2px;color:var(--sage)}
+    .price-card.featured .price-feats svg{color:var(--terracotta)}
+    .price-feats .pf-strong{font-weight:700}
+    .price-note{font-size:13px;color:var(--muted);line-height:1.5;margin-top:14px}
+    .price-cta{margin-top:auto}
+    @media(max-width:768px){.pricing-grid{grid-template-columns:1fr}.price-tagline{min-height:0}}
 
     /* ---- HERO FREE PILL ---- */
     .hero-free-pill{display:flex;justify-content:flex-start}
@@ -298,12 +326,12 @@
         </g>
       </svg>
     </div>
-    <h1>Encaminhe suas reservas. <span class="accent">A gente cuida do resto.</span></h1>
-    <p class="hero-sub">O Tragitto lê seus emails de confirmação e transforma tudo num roteiro compartilhado. A IA ajuda a planejar; todo mundo fica em sincronia.</p>
+    <h1>Planeje viagens em grupo. <span class="accent">Sem complicação.</span></h1>
+    <p class="hero-sub">Monte um roteiro compartilhado e inteligente — de graça. Ative o Concierge IA para encaminhar suas reservas e planejar seus dias, viagem a viagem.</p>
     <div class="hero-free-pill" style="margin-bottom:14px;opacity:0;animation:riseIn .8s cubic-bezier(.22,1,.36,1) .5s forwards">
       <span class="pill pill-green">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg>
-        Grátis · Sem anúncios
+        Grátis para começar · Premium por viagem
       </span>
     </div>
     <div class="hero-ctas store-badges">
@@ -316,7 +344,7 @@
     </div>
     <div class="cta-reassure">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Sem conta</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Grátis para sempre</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Grátis para planejar juntos</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> 30 segundos para começar</span>
     </div>
     </div>
@@ -389,7 +417,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--slate)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
         <div>
-          <h3>Concierge IA</h3>
+          <h3>Concierge IA <span class="feat-badge">Premium</span></h3>
           <p>Converse com seu assistente de viagem. Ele planeja seu dia, sugere restaurantes e respeita seu orçamento e preferências.</p>
         </div>
       </div>
@@ -398,7 +426,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#B07D3A" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <div>
-          <h3>Importação de Reservas</h3>
+          <h3>Importação de Reservas <span class="feat-badge">Premium</span></h3>
           <p>Encaminhe e-mails de confirmação e as reservas são automaticamente processadas e adicionadas à sua linha do tempo.</p>
         </div>
       </div>
@@ -480,6 +508,50 @@
   </div>
 </section>
 
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Preços</p>
+      <h2 class="section-title">Grátis para planejar.<br>Premium no piloto automático.</h2>
+      <p class="section-sub">Planeje cada viagem em grupo de graça. Ative o Concierge IA e o encaminhamento de reservas por viagem, só quando quiser.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-d1">
+        <div class="price-tier">Grátis</div>
+        <div class="price-amount"><span class="zero">R$ 0</span><span class="per">para sempre</span></div>
+        <div class="price-badge" style="background:var(--sage-soft);color:#5E8C77">Sem conta</div>
+        <p class="price-tagline">Tudo o que você precisa para planejar uma viagem em grupo.</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Crie viagens e monte seu roteiro na mão</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Convide companheiros e compartilhem em tempo real</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Notificações push e acesso offline</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Exporte como PDF</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> Compartilhe por segurança com quem você ama</li>
+        </ul>
+        <div class="price-cta">
+          <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn btn-outline" style="width:100%;justify-content:center">Começar grátis</a>
+        </div>
+      </div>
+      <div class="price-card featured reveal reveal-d2">
+        <div class="price-tier">Premium · por viagem</div>
+        <div class="price-amount">R$ 4,99<span class="per">/ viagem</span></div>
+        <div class="price-badge">Preço beta</div>
+        <p class="price-tagline">Deixe o Tragitto montar e planejar a viagem por você.</p>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> <span class="pf-strong">Tudo do Grátis, e mais:</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> <span class="pf-strong">Concierge IA</span> — planeja seus dias, restaurantes e rotas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L19 7"/></svg> <span class="pf-strong">Encaminhamento de e-mails e reservas</span> — monta seu roteiro sozinho</li>
+        </ul>
+        <p class="price-note">Ativa quando você cria a viagem e fica ativo até pouco depois do fim dela. Inclui uma cota generosa de IA por viagem — recarregue quando quiser se precisar de mais.</p>
+        <div class="price-cta">
+          <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn btn-primary" style="width:100%;justify-content:center">Baixar o app</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SAFETY -->
 <section class="safety" id="safety">
   <div class="container">
@@ -531,7 +603,15 @@
     <div class="faq-list">
       <details class="faq-item reveal reveal-d1">
         <summary>O Tragitto é grátis?</summary>
-        <p>Sim. A experiência principal — linha do tempo, importação de reservas, Concierge IA e compartilhamento em grupo — é gratuita. Talvez introduzamos recursos premium opcionais no futuro, mas o básico nunca será bloqueado.</p>
+        <p>Sim — planejar é grátis. Baixe o app, crie viagens, monte seu roteiro na mão, convide companheiros e compartilhe em tempo real sem custo. O <strong>Concierge IA</strong> e o <strong>encaminhamento de e-mails e reservas</strong> são Premium, ativados por viagem.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Quanto custa o Premium?</summary>
+        <p>O Premium custa <strong>R$ 4,99 por viagem</strong> durante o beta. Ele libera o Concierge IA e o encaminhamento de reservas para aquela viagem, e inclui uma cota generosa de IA. Se precisar de mais, dá para recarregar tokens quando quiser.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Quando o Premium ativa e expira?</summary>
+        <p>O Premium ativa no momento em que você cria a viagem e fica ativo até pouco depois do fim dela — acompanha você durante todo o planejamento e a viagem. Cada nova viagem é uma compra à parte.</p>
       </details>
       <details class="faq-item reveal reveal-d1">
         <summary>Meus companheiros de viagem precisam instalar o app?</summary>
@@ -562,7 +642,7 @@
   <div class="container">
     <div class="cta-banner reveal">
       <h2>Sua próxima viagem começa aqui.</h2>
-      <p>Grátis. Sem anúncios.</p>
+      <p>Grátis para planejar juntos · Premium a partir de R$ 4,99 por viagem.</p>
       <div class="cta-banner-ctas">
         <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
@@ -604,7 +684,7 @@
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <div class="sticky-cta-text">Viaje em grupo, sem complicação.<small>Grátis · Sem anúncios · Sem conta</small></div>
+  <div class="sticky-cta-text">Planeje viagens em grupo.<small>Grátis para começar · Premium por viagem</small></div>
   <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn btn-primary">Baixar o App</a>
 </div>
 
