@@ -482,6 +482,16 @@
     const appStoreUrl = 'https://apps.apple.com/app/tragitto/id6761928217';
     const storeUrl = isIOS ? appStoreUrl : playStoreUrl;
     const storeName = isIOS ? 'App Store' : 'Google Play';
+    // The canonical join link. iOS Universal Links + Android verified App Links
+    // make the OS open the installed app directly when this https URL is tapped
+    // — and, unlike the custom tragitto:// scheme, it survives a fresh install
+    // (tapping it again after install reopens the app on the join screen with
+    // the token intact, instead of a dead launch that drops the invite).
+    const appLinkUrl = token ? `https://tragitto.app/join/${token}` : null;
+    // Custom-scheme fallback for an installed app. iOS Universal Links do NOT
+    // fire from a same-domain JS redirect (this page is on tragitto.app), so on
+    // iOS we open the installed app via tragitto:// instead. Harmless if the
+    // app isn't installed (Safari just stays put → timeout → store).
     const appSchemeUrl = token ? `tragitto://join/${token}` : null;
 
     // Play Store icon SVG
@@ -493,22 +503,29 @@
     const card = document.getElementById('invite-card');
     const hint = document.getElementById('hint-text');
 
-    // For the CTA button: try app first, fall back to store
-    // On iOS, use the custom URL scheme to open the app directly
-    const ctaUrl = (token && appSchemeUrl) ? appSchemeUrl : storeUrl;
-    const ctaLabel = (token && appSchemeUrl) ? 'Open in Tragitto' : `Get on ${storeName}`;
+    // CTA label. If the app is installed, the OS already intercepted the
+    // https://tragitto.app/join/... link before this page ever loaded — so by
+    // the time someone sees this button, they almost certainly need the store.
+    const ctaLabel = `Get on ${storeName}`;
 
-    // Fallback: if app doesn't open within 1.5s, redirect to store
+    // Try to open an installed app, then fall back to the store to install.
+    // - iOS: the https Universal Link won't fire from this same-domain JS
+    //   redirect, so we use the tragitto:// scheme to reopen an installed app.
+    // - Android: the verified https App Link reopens the installed app
+    //   reliably (and survives reinstall with the token), so prefer it.
     function openAppOrStore() {
-      if (!token || !appSchemeUrl) { window.location.href = storeUrl; return; }
+      const openUrl = isIOS ? appSchemeUrl : appLinkUrl;
+      if (!token || !openUrl) { window.location.href = storeUrl; return; }
       const start = Date.now();
-      window.location.href = appSchemeUrl;
+      window.location.href = openUrl;
       setTimeout(() => {
-        // If we're still here after 1.5s, the app didn't open — go to store
-        if (Date.now() - start < 2000) {
+        // If the app opened, the page was backgrounded and this timer was
+        // throttled — the elapsed time overshoots. Only redirect to the store
+        // when we're confident we're still here (app not installed).
+        if (Date.now() - start < 1500) {
           window.location.href = storeUrl;
         }
-      }, 1500);
+      }, 1200);
     }
 
     if (!token) {
