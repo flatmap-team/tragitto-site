@@ -60,6 +60,9 @@
     .nav-logo{display:flex;align-items:center;gap:8px}
     .nav-logo svg{width:28px;height:28px}
     .nav-logo span{font-family:'Fraunces',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px}
+    .nav-right{display:flex;align-items:center;gap:18px}
+    .nav-link{font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;color:var(--text);transition:color .2s}
+    .nav-link:hover{color:var(--terracotta)}
     .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:var(--terracotta);color:white;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s}
     .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(224,122,95,0.3)}
     .nav-cta svg{width:16px;height:16px}
@@ -302,10 +305,13 @@
     <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#E07A5F"/><g transform="translate(50 51) scale(0.62) translate(-50 -51)"><line x1="21" y1="19" x2="79" y2="19" stroke="#fff" stroke-width="16" stroke-linecap="round"/><circle cx="50" cy="42" r="6.5" fill="#fff"/><circle cx="50" cy="60" r="6.5" fill="#fff"/><circle cx="50" cy="83" r="8.5" stroke="#F2CC8F" stroke-width="6"/></g></svg>
     <span>Tragitto</span>
   </a>
-  <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="nav-cta">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
-    Obtener la App
-  </a>
+  <div class="nav-right">
+    <a href="/es/guide/" class="nav-link">Guía</a>
+    <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
+      Obtener la App
+    </a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -609,7 +615,7 @@
       </details>
       <details class="faq-item reveal reveal-d1">
         <summary>¿Cuánto cuesta Premium?</summary>
-        <p>Premium cuesta <strong>$9.99 por viaje</strong> durante la beta. Activa el Conserje IA y el reenvío de reservas para ese viaje, e incluye una asignación generosa de IA. Si necesitas más, puedes recargar tokens cuando quieras.</p>
+        <p>El Premium es una compra única por viaje durante la beta — verás el precio exacto en la app antes de comprar. Desbloquea el Conserje IA y el reenvío de reservas para ese viaje, con una asignación generosa de IA. ¿Necesitas más? Puedes recargar tokens cuando quieras. El Premium está disponible en iPhone y Android.</p>
       </details>
       <details class="faq-item reveal reveal-d1">
         <summary>¿Cuándo se activa y vence Premium?</summary>
