@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Como usar o Tragitto — Guia</title>
+  <meta name="description" content="Um guia completo para planejar viagens com o Tragitto — crie uma viagem, monte seu roteiro, planeje em grupo, use o Concierge IA e viaje com segurança.">
+  <meta property="og:title" content="Como usar o Tragitto — Guia">
+  <meta property="og:description" content="Um guia completo para planejar viagens com o Tragitto — crie uma viagem, monte seu roteiro, planeje em grupo, use o Concierge IA e viaje com segurança.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tragitto.app/pt/guide/">
+  <link rel="alternate" hreflang="en" href="https://tragitto.app/en/guide/">
+  <link rel="alternate" hreflang="pt" href="https://tragitto.app/pt/guide/">
+  <link rel="alternate" hreflang="es" href="https://tragitto.app/es/guide/">
+  <link rel="alternate" hreflang="x-default" href="https://tragitto.app/en/guide/">
+  <link rel="canonical" href="https://tragitto.app/pt/guide/">
+  <meta property="og:image" content="https://tragitto.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Tragitto">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Como usar o Tragitto — Guia">
+  <meta name="twitter:description" content="Um guia completo para planejar viagens com o Tragitto.">
+  <meta name="twitter:image" content="https://tragitto.app/og-image.png">
+  <meta name="theme-color" content="#E07A5F">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Tragitto">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23E07A5F'/><g transform='translate(50 51) scale(0.62) translate(-50 -51)'><line x1='21' y1='19' x2='79' y2='19' stroke='%23FAF7ED' stroke-width='16' stroke-linecap='round'/><circle cx='50' cy='42' r='6.5' fill='%23FAF7ED'/><circle cx='50' cy='60' r='6.5' fill='%23FAF7ED'/><circle cx='50' cy='83' r='8.5' stroke='%23F2CC8F' stroke-width='6' fill='none'/></g></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #E07A5F;
+      --terracotta-soft: rgba(224,122,95,0.10);
+      --sage: #81B29A;
+      --sage-soft: rgba(129,178,154,0.10);
+      --sage-alt: #81B29A;
+      --sage-alt-soft: rgba(129,178,154,0.10);
+      --sand: #F2CC8F;
+      --slate: #3D405B;
+      --cream: #F4F1DE;
+      --text: #3D405B;
+      --muted: #7C7F94;
+      --surface: #FBFAF3;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);line-height:1.7;overflow-x:hidden}
+    h1,h2,h3{font-family:'Fraunces',sans-serif;line-height:1.15}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+    /* ---- NAV ---- */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,backdrop-filter .3s,box-shadow .3s}
+    nav.scrolled{background:rgba(255,251,240,0.85);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,0.04)}
+    .nav-logo{display:flex;align-items:center;gap:8px}
+    .nav-logo svg{width:28px;height:28px}
+    .nav-logo span{font-family:'Fraunces',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px}
+    .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:var(--terracotta);color:white;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(224,122,95,0.3)}
+    .nav-cta svg{width:16px;height:16px}
+    .nav-right{display:flex;align-items:center;gap:18px}
+    .nav-link{font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;color:var(--text);transition:color .2s}
+    .nav-link:hover{color:var(--terracotta)}
+
+    /* ---- BUTTONS ---- */
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:700;font-size:16px;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--terracotta);color:white;box-shadow:0 4px 20px rgba(224,122,95,0.3)}
+    .btn-primary:hover{box-shadow:0 8px 32px rgba(224,122,95,0.4)}
+    .btn-outline{background:transparent;color:var(--text);border:2px solid rgba(61,64,91,0.12)}
+    .btn-outline:hover{border-color:var(--sage);color:var(--sage)}
+    .btn svg{width:18px;height:18px}
+
+    /* ---- PILLS ---- */
+    .pill{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
+    .pill svg{width:14px;height:14px}
+    .pill-teal{background:var(--sage-soft);color:var(--sage)}
+    .pill-yellow{background:rgba(242,204,143,0.12);color:#B07D3A}
+    .pill-blue{background:rgba(61,64,91,0.10);color:var(--slate)}
+    .pill-green{background:var(--sage-alt-soft);color:#5E8C77}
+
+    /* ---- FAQ (identical to home page accordion) ---- */
+    .faq-list{margin-top:36px;display:flex;flex-direction:column;gap:8px}
+    .faq-item{background:var(--surface);border-radius:14px;border:1px solid rgba(124,127,148,0.10);padding:16px 22px;cursor:pointer;transition:border-color .2s}
+    .faq-item[open]{border-color:rgba(129,178,154,0.4)}
+    .faq-item summary{font-family:'Fraunces',sans-serif;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';font-size:24px;color:var(--muted);transition:transform .2s,color .2s}
+    .faq-item[open] summary::after{content:'−';color:var(--sage)}
+    .faq-item p{margin-top:12px;color:var(--muted);font-size:15px;line-height:1.6}
+
+    /* ---- CTA BANNER ---- */
+    .cta-section{padding:80px 0 100px}
+    .cta-banner{background:linear-gradient(135deg,var(--terracotta),#C8553D);border-radius:28px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+    .cta-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.08)}
+    .cta-banner::after{content:'';position:absolute;bottom:-30px;left:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.05)}
+    .cta-banner h2{color:white;font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;margin-bottom:8px;position:relative;z-index:1}
+    .cta-banner p{color:rgba(255,255,255,0.8);font-size:17px;margin-bottom:28px;position:relative;z-index:1}
+    .cta-banner-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+    .cta-banner .btn{background:white;color:var(--terracotta)}
+    .cta-banner .btn-ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.5)}
+    .cta-banner .btn-ghost:hover{border-color:white;background:rgba(255,255,255,0.08)}
+    .cta-banner .btn:hover{box-shadow:0 8px 32px rgba(0,0,0,0.15)}
+
+    /* ---- FOOTER ---- */
+    footer{padding:40px 0;border-top:1px solid rgba(124,127,148,0.08)}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+    .footer-brand{display:flex;align-items:center;gap:8px}
+    .footer-brand svg{width:20px;height:20px}
+    .footer-brand span{font-family:'Fraunces',sans-serif;font-weight:700;font-size:15px}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:14px;color:var(--muted);font-weight:600;transition:color .2s}
+    .footer-links a:hover{color:var(--sage)}
+    .footer-copy{font-size:12px;color:var(--muted);width:100%;text-align:center;margin-top:16px}
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.1s}
+    .reveal-d2{transition-delay:.2s}
+    .reveal-d3{transition-delay:.3s}
+    .reveal-d4{transition-delay:.4s}
+
+    /* ---- GUIDE HERO ---- */
+    .guide-hero{padding:140px 0 72px;text-align:center;position:relative;overflow:hidden}
+    .guide-hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(closest-side,rgba(224,122,95,0.09),rgba(129,178,154,0.07) 55%,transparent 80%);pointer-events:none}
+    .guide-hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-2px;margin-bottom:14px}
+    .guide-hero .subtitle{font-size:clamp(16px,2.2vw,20px);color:var(--muted);font-weight:500;max-width:540px;margin:0 auto}
+
+    /* ---- ANCHOR NAV ---- */
+    .anchor-nav{padding:0 0 56px;display:flex;justify-content:center}
+    .anchor-nav-inner{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .anchor-link{padding:8px 18px;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:700;font-size:14px;background:var(--surface);border:1px solid rgba(124,127,148,0.12);color:var(--text);transition:background .2s,color .2s,border-color .2s}
+    .anchor-link:hover{background:var(--terracotta);color:white;border-color:var(--terracotta)}
+
+    /* ---- GUIDE SECTIONS ---- */
+    .guide-section{padding:72px 0;position:relative}
+    .guide-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,127,148,0.12),transparent)}
+    .guide-section-header{margin-bottom:36px}
+    .section-label{font-family:'Fraunces',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--sage);margin-bottom:10px}
+    .guide-section h2{font-size:clamp(26px,3.5vw,40px);font-weight:800;letter-spacing:-1px}
+    .guide-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+    .guide-card{background:var(--surface);border-radius:20px;padding:28px 24px;border:1px solid rgba(124,127,148,0.10);transition:transform .3s,box-shadow .3s}
+    .feat-badge{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 9px;border-radius:999px;background:linear-gradient(135deg,rgba(224,122,95,0.14),rgba(242,204,143,0.22));color:#B07D3A;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;vertical-align:middle;text-transform:uppercase}
+    .guide-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(61,64,91,0.07)}
+    .guide-card-title{font-family:'Fraunces',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:7px;line-height:1.3}
+    .guide-card p{color:var(--muted);font-size:15px;line-height:1.6}
+
+    /* ---- FAQ SECTION ---- */
+    .faq-section{padding:72px 0;position:relative}
+    .faq-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,127,148,0.12),transparent)}
+
+    /* ---- RESPONSIVE ---- */
+    @media(max-width:768px){
+      .cta-banner{padding:40px 24px}
+      nav{padding:12px 20px}
+      .anchor-nav-inner{gap:6px}
+      .anchor-link{padding:7px 14px;font-size:13px}
+      .guide-cards{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .guide-hero{padding:120px 0 56px}
+      .guide-hero h1{letter-spacing:-1px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" aria-label="Site">
+  <a href="/pt/" class="nav-logo">
+    <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#E07A5F"/><g transform="translate(50 51) scale(0.62) translate(-50 -51)"><line x1="21" y1="19" x2="79" y2="19" stroke="#fff" stroke-width="16" stroke-linecap="round"/><circle cx="50" cy="42" r="6.5" fill="#fff"/><circle cx="50" cy="60" r="6.5" fill="#fff"/><circle cx="50" cy="83" r="8.5" stroke="#F2CC8F" stroke-width="6"/></g></svg>
+    <span>Tragitto</span>
+  </a>
+  <div class="nav-right">
+    <a href="/pt/guide/" class="nav-link">Guia</a>
+    <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
+      Baixar o App
+    </a>
+  </div>
+</nav>
+
+<!-- GUIDE HERO -->
+<header class="guide-hero">
+  <div class="container">
+    <h1>Como usar o Tragitto</h1>
+    <p class="subtitle">Tudo o que você pode fazer — e exatamente como fazer.</p>
+  </div>
+</header>
+
+<!-- ANCHOR NAV -->
+<nav class="anchor-nav" aria-label="Ir para seção">
+  <div class="anchor-nav-inner">
+    <a href="#getting-started" class="anchor-link">Primeiros passos</a>
+    <a href="#itinerary" class="anchor-link">Roteiro</a>
+    <a href="#together" class="anchor-link">Planejem juntos</a>
+    <a href="#ai" class="anchor-link">Concierge IA</a>
+    <a href="#safety" class="anchor-link">Segurança</a>
+    <a href="#faq" class="anchor-link">FAQ</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: GETTING STARTED -->
+<section class="guide-section" id="getting-started">
+  <div class="container">
+    <div class="guide-section-header reveal">
+      <p class="section-label">01</p>
+      <h2>Primeiros passos</h2>
+    </div>
+    <div class="guide-cards">
+      <div class="guide-card reveal reveal-d1">
+        <h3 class="guide-card-title">Crie sua primeira viagem</h3>
+        <p>Toque no botão + na tela de Viagens. Dê um nome à viagem, adicione o destino e escolha as datas de início e fim. Toque em Criar e sua linha do tempo compartilhada abre na hora.</p>
+      </div>
+      <div class="guide-card reveal reveal-d2">
+        <h3 class="guide-card-title">Entre na conta</h3>
+        <p>Use seu email para receber um código de 6 dígitos, ou continue com Google ou Apple. Sem senha para lembrar, e a mesma conta sincroniza em todos os aparelhos.</p>
+      </div>
+      <div class="guide-card reveal reveal-d3">
+        <h3 class="guide-card-title">Saiba onde está cada coisa</h3>
+        <p>A linha do tempo é o coração de cada viagem. O orbe brilhante abre o Concierge IA, e o menu ••• (canto superior direito) tem compartilhamento, importação automática, notificações, exportação e mais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: MONTE SEU ROTEIRO -->
+<section class="guide-section" id="itinerary">
+  <div class="container">
+    <div class="guide-section-header reveal">
+      <p class="section-label">02</p>
+      <h2>Monte seu roteiro</h2>
+    </div>
+    <div class="guide-cards">
+      <div class="guide-card reveal reveal-d1">
+        <h3 class="guide-card-title">Adicione voo, hotel ou atividade</h3>
+        <p>Toque em + na linha do tempo, escolha a categoria, depois o tipo, e preencha os detalhes — título, local, data e hora. Cada horário aparece no fuso local de onde acontece, então um voo que pousa às 15h locais aparece como 15h.</p>
+      </div>
+      <div class="guide-card reveal reveal-d2">
+        <h3 class="guide-card-title">Anexe bilhetes e documentos</h3>
+        <p>Abra qualquer item e adicione cartões de embarque ou confirmações em PDF — até cinco bilhetes e cinco documentos por item, para tudo viajar com você.</p>
+      </div>
+      <div class="guide-card reveal reveal-d3">
+        <h3 class="guide-card-title">Edite ou remova um item</h3>
+        <p>Toque em um item para editá-lo e depois em Salvar. Para remover, deslize para a esquerda e toque em Excluir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PLANEJEM JUNTOS -->
+<section class="guide-section" id="together">
+  <div class="container">
+    <div class="guide-section-header reveal">
+      <p class="section-label">03</p>
+      <h2>Planejem juntos</h2>
+    </div>
+    <div class="guide-cards">
+      <div class="guide-card reveal reveal-d1">
+        <h3 class="guide-card-title">Editores e seguidores</h3>
+        <p>Editores adicionam e alteram itens junto com você. Seguidores — como a família em casa — veem o plano e suas atualizações, mas não editam. Você escolhe o papel de cada pessoa ao convidar.</p>
+      </div>
+      <div class="guide-card reveal reveal-d2">
+        <h3 class="guide-card-title">Convide e compartilhe o link</h3>
+        <p>Abra a área de membros ou o menu ••• e compartilhe o link da viagem. Quem tocar entra no seu papel — sem conta separada, um login com Google já basta.</p>
+      </div>
+      <div class="guide-card reveal reveal-d3">
+        <h3 class="guide-card-title">A visão do seguidor</h3>
+        <p>Seguidores veem seu roteiro, horários e qualquer localização que você escolher compartilhar — nunca suas reservas, chat ou anotações. Um selo lembra que estão vendo, não editando.</p>
+      </div>
+      <div class="guide-card reveal reveal-d4">
+        <h3 class="guide-card-title">Sincronização e modo offline</h3>
+        <p>Sua viagem fica no seu aparelho, então dá para ver e editar até no avião. Tudo sincroniza assim que você volta a ficar online, e você vê as mudanças dos companheiros em tempo real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: DEIXE A IA TRABALHAR -->
+<section class="guide-section" id="ai">
+  <div class="container">
+    <div class="guide-section-header reveal">
+      <p class="section-label">04</p>
+      <h2>Deixe a IA trabalhar</h2>
+    </div>
+    <div class="guide-cards">
+      <div class="guide-card reveal reveal-d1">
+        <h3 class="guide-card-title">Encaminhe emails de reserva <span class="feat-badge">Premium</span></h3>
+        <p>Cada viagem tem seu próprio email. Encaminhe a confirmação de voo, hotel ou restaurante e a IA lê e adiciona os detalhes à linha do tempo. O endereço fica em ••• → Importação automática.</p>
+      </div>
+      <div class="guide-card reveal reveal-d2">
+        <h3 class="guide-card-title">Pergunte ao Concierge IA <span class="feat-badge">Premium</span></h3>
+        <p>Toque no orbe para conversar. Peça ideias de restaurante, uma rota a pé ou um dia inteiro planejado — ele conhece suas datas, ritmo e orçamento.</p>
+      </div>
+      <div class="guide-card reveal reveal-d3">
+        <h3 class="guide-card-title">Planeje um dia automaticamente <span class="feat-badge">Premium</span></h3>
+        <p>A partir de um dia vazio ou do cabeçalho do dia, peça ao Concierge para planejá-lo. Ele sugere um dia tranquilo e realista que você aceita, ajusta ou ignora.</p>
+      </div>
+      <div class="guide-card reveal reveal-d4">
+        <h3 class="guide-card-title">Resolva alertas de preparação <span class="feat-badge">Premium</span></h3>
+        <p>O Tragitto aponta lacunas como hotel faltando ou conexão apertada, com uma pontuação de prontidão. Toque em Resolver e o Concierge propõe uma solução que você adiciona num toque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: VIAJE COM SEGURANÇA -->
+<section class="guide-section" id="safety">
+  <div class="container">
+    <div class="guide-section-header reveal">
+      <p class="section-label">05</p>
+      <h2>Viaje com segurança e bem informado</h2>
+    </div>
+    <div class="guide-cards">
+      <div class="guide-card reveal reveal-d1">
+        <h3 class="guide-card-title">Compartilhe a localização ao vivo <span class="feat-badge">Premium</span></h3>
+        <p>Abra ••• → Compartilhar localização e escolha por quanto tempo. Seus companheiros acompanham seu ponto com tranquilidade, e o compartilhamento para sozinho quando o tempo acaba.</p>
+      </div>
+      <div class="guide-card reveal reveal-d2">
+        <h3 class="guide-card-title">Check-ins e chegadas</h3>
+        <p>Seguidores podem perguntar se você está bem, e você confirma as chegadas conforme avança — deixando todos tranquilos sem uma enxurrada de mensagens.</p>
+      </div>
+      <div class="guide-card reveal reveal-d3">
+        <h3 class="guide-card-title">Notificações e horário de silêncio</h3>
+        <p>Abra ••• → Notificações para escolher o que você recebe — lembretes, chegadas, sugestões — e defina o horário de silêncio para nada tocar de madrugada.</p>
+      </div>
+      <div class="guide-card reveal reveal-d1">
+        <h3 class="guide-card-title">Exporte a viagem em PDF</h3>
+        <p>Abra ••• → Exportar como PDF para um roteiro limpo e compartilhável com cada dia e detalhe — ótimo para backup offline ou compartilhar fora do app.</p>
+      </div>
+      <div class="guide-card reveal reveal-d2">
+        <h3 class="guide-card-title">Cartão de emergência</h3>
+        <p>Mantenha os contatos de emergência à mão e compartilhe num toque, para que a ajuda esteja sempre por perto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container" style="max-width:760px">
+    <div class="reveal">
+      <p class="section-label">FAQ</p>
+      <h2 style="font-size:clamp(26px,3.5vw,40px);font-weight:800;letter-spacing:-1px">Perguntas frequentes.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal reveal-d1">
+        <summary>O Tragitto é gratuito?</summary>
+        <p>Sim — planejar é grátis. Baixe o app, crie viagens, monte seu roteiro à mão, convide companheiros e compartilhe em tempo real sem custo. O <strong>Concierge IA</strong> e o <strong>encaminhamento de emails e reservas</strong> são Premium, liberados por viagem.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Quando o Premium ativa e expira?</summary>
+        <p>O Premium ativa no momento em que você cria a viagem e fica ativo até pouco depois de a viagem terminar — então ele está presente durante todo o planejamento e a viagem. Cada nova viagem é uma compra própria.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Meus companheiros precisam instalar o app?</summary>
+        <p>Donos e editores sim — eles adicionam e alteram itens. Seguidores (pais, parceiros) podem instalar também, ou simplesmente receber atualizações em modo leitura. De todo jeito, não é preciso conta separada: um login com Google funciona.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Como funciona o encaminhamento de reservas?</summary>
+        <p>Cada viagem ganha um endereço de email exclusivo. Encaminhe suas confirmações de voo, hotel ou restaurante para lá, e nossa IA extrai datas, horários, locais e códigos de reserva automaticamente — adicionando tudo à linha do tempo compartilhada.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Quem pode ver meus dados?</summary>
+        <p>Apenas as pessoas que você convidar. Não vendemos nem compartilhamos os dados da sua viagem. Seguidores veem só o seu roteiro e a localização ao vivo (opcional) — nunca suas reservas, chat ou anotações.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Quais aparelhos o Tragitto suporta?</summary>
+        <p>iPhone (iOS 16+) e Android (Android 8+). Mesma conta, mesmos dados, sincronização em tempo real entre todos os aparelhos.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Quanto custa o Premium?</summary>
+        <p>O Premium é uma compra única por viagem durante o beta — você vê o preço exato no app antes de comprar. Ele libera o Concierge IA e o encaminhamento de reservas para aquela viagem, com uma cota generosa de IA. Precisa de mais? Dá para recarregar tokens quando quiser. O Premium está disponível em iPhone e Android.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Qual a diferença entre editor e seguidor?</summary>
+        <p>Editores adicionam e alteram itens com você. Seguidores veem o plano e suas atualizações — inclusive a localização que você compartilhar — mas não editam. Escolha o papel ao convidar alguém.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Minhas reservas são adicionadas automaticamente?</summary>
+        <p>Sim, no Premium. Encaminhe uma confirmação para o email da viagem e a IA extrai datas, horários, locais e códigos de reserva e adiciona à sua linha do tempo.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Dá para usar o app offline, tipo no avião?</summary>
+        <p>Com certeza. Sua viagem fica no seu aparelho — veja, adicione e edite quando quiser. Tudo sincroniza quando você volta a ficar online, incluindo as sugestões de IA que você deixou na fila.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Como cancelo ou peço reembolso?</summary>
+        <p>O Premium é uma compra única por viagem, então não há o que cancelar. Para reembolsos, use o processo padrão da App Store ou da Google Play.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Minha localização é privada?</summary>
+        <p>Sim. O compartilhamento de localização fica desligado até você ativar, você escolhe por quanto tempo, e ele para sozinho. Só quem está na viagem pode ver, e seguidores nunca veem suas reservas, chat ou anotações.</p>
+      </details>
+      <details class="faq-item reveal reveal-d1">
+        <summary>Em quais idiomas o Tragitto está disponível?</summary>
+        <p>O app está disponível em inglês, português e espanhol, e estamos adicionando mais.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <h2>Sua próxima viagem começa aqui.</h2>
+      <p>Grátis para planejar juntos · Premium por viagem.</p>
+      <div class="cta-banner-ctas">
+        <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
+          Google Play
+        </a>
+        <a href="https://apps.apple.com/app/tragitto/id6761928217" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-3 2.45-4.45 2.56-4.52-1.4-2.04-3.57-2.32-4.34-2.35-1.85-.19-3.6 1.09-4.54 1.09-.93 0-2.38-1.06-3.91-1.03-2.01.03-3.86 1.17-4.9 2.97-2.09 3.62-.53 8.98 1.5 11.92.99 1.44 2.18 3.05 3.74 2.99 1.5-.06 2.07-.97 3.89-.97 1.81 0 2.34.97 3.93.94 1.62-.03 2.65-1.46 3.64-2.91 1.15-1.67 1.62-3.29 1.65-3.37-.04-.02-3.17-1.22-3.21-4.83zM14.06 4.06c.82-1 1.38-2.39 1.23-3.78-1.19.05-2.63.79-3.49 1.79-.76.88-1.43 2.29-1.25 3.65 1.32.1 2.69-.67 3.51-1.66z"/></svg>
+          App Store
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#E07A5F"/><g transform="translate(50 51) scale(0.62) translate(-50 -51)"><line x1="21" y1="19" x2="79" y2="19" stroke="#fff" stroke-width="16" stroke-linecap="round"/><circle cx="50" cy="42" r="6.5" fill="#fff"/><circle cx="50" cy="60" r="6.5" fill="#fff"/><circle cx="50" cy="83" r="8.5" stroke="#F2CC8F" stroke-width="6"/></g></svg>
+        <span>Tragitto</span>
+      </div>
+      <div class="footer-links">
+        <a href="/pt/privacy.html">Política de Privacidade</a>
+        <a href="/pt/terms.html">Termos de Uso</a>
+        <a href="mailto:hello@tragitto.app?subject=Tragitto%20Help">Ajuda</a>
+        <a href="mailto:hello@tragitto.app">Contato</a>
+        <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline">Google Play</a>
+        <a href="https://apps.apple.com/app/tragitto/id6761928217">App Store</a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:16px;margin-top:12px">
+      <a href="/en/" style="font-size:13px;font-weight:600;color:var(--muted)">EN</a>
+      <a href="/pt/" style="font-size:13px;font-weight:700;color:var(--text)">PT</a>
+      <a href="/es/" style="font-size:13px;font-weight:600;color:var(--muted)">ES</a>
+      <a href="/de/" style="font-size:13px;font-weight:600;color:var(--muted)">DE</a>
+      <a href="/fr/" style="font-size:13px;font-weight:600;color:var(--muted)">FR</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Tragitto. Viaje junto, sem esforço.</p>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
