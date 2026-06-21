@@ -36,369 +36,526 @@
       --terracotta-soft: rgba(224,122,95,0.10);
       --sage: #81B29A;
       --sage-soft: rgba(129,178,154,0.10);
-      --sage-alt: #81B29A;
-      --sage-alt-soft: rgba(129,178,154,0.10);
       --sand: #F2CC8F;
       --slate: #3D405B;
       --cream: #F4F1DE;
       --text: #3D405B;
       --muted: #7C7F94;
       --surface: #FBFAF3;
+      --line: rgba(124,127,148,0.14);
+      --nav-h: 60px;
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);line-height:1.7;overflow-x:hidden}
-    h1,h2,h3{font-family:'Fraunces',sans-serif;line-height:1.15}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);line-height:1.7;overflow-x:hidden;-webkit-text-size-adjust:100%}
+    h1,h2,h3,h4{font-family:'Fraunces',sans-serif;line-height:1.15}
     a{color:inherit;text-decoration:none}
-    .container{max-width:1080px;margin:0 auto;padding:0 24px}
+    img{max-width:100%;display:block}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px;width:100%}
 
     /* ---- NAV ---- */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,backdrop-filter .3s,box-shadow .3s}
-    nav.scrolled{background:rgba(255,251,240,0.85);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,0.04)}
-    .nav-logo{display:flex;align-items:center;gap:8px}
-    .nav-logo svg{width:28px;height:28px}
+    nav.site{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);padding:0 28px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,backdrop-filter .3s,box-shadow .3s;background:rgba(244,241,222,0.72);backdrop-filter:blur(20px)}
+    nav.site.scrolled{background:rgba(255,251,240,0.9);box-shadow:0 1px 0 rgba(0,0,0,0.05)}
+    .nav-logo{display:flex;align-items:center;gap:8px;min-width:0}
+    .nav-logo svg{width:26px;height:26px;flex-shrink:0}
     .nav-logo span{font-family:'Fraunces',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px}
-    .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:var(--terracotta);color:white;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s}
+    .nav-right{display:flex;align-items:center;gap:18px;min-width:0}
+    .nav-link{font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;color:var(--text);transition:color .2s;white-space:nowrap}
+    .nav-link.active{color:var(--terracotta)}
+    .nav-link:hover{color:var(--terracotta)}
+    .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--terracotta);color:white;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s;white-space:nowrap}
     .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(224,122,95,0.3)}
-    .nav-cta svg{width:16px;height:16px}
+    .nav-cta svg{width:15px;height:15px;flex-shrink:0}
 
     /* ---- BUTTONS ---- */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:700;font-size:16px;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:700;font-size:15px;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;white-space:nowrap}
     .btn:hover{transform:translateY(-2px)}
     .btn-primary{background:var(--terracotta);color:white;box-shadow:0 4px 20px rgba(224,122,95,0.3)}
     .btn-primary:hover{box-shadow:0 8px 32px rgba(224,122,95,0.4)}
-    .btn-outline{background:transparent;color:var(--text);border:2px solid rgba(61,64,91,0.12)}
-    .btn-outline:hover{border-color:var(--sage);color:var(--sage)}
-    .btn svg{width:18px;height:18px}
+    .btn svg{width:17px;height:17px;flex-shrink:0}
 
-    /* ---- PILLS ---- */
-    .pill{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
-    .pill svg{width:14px;height:14px}
-    .pill-teal{background:var(--sage-soft);color:var(--sage)}
-    .pill-yellow{background:rgba(242,204,143,0.12);color:#B07D3A}
-    .pill-blue{background:rgba(61,64,91,0.10);color:var(--slate)}
-    .pill-green{background:var(--sage-alt-soft);color:#5E8C77}
+    /* ---- DOC HEADER (breadcrumb + title) ---- */
+    .doc-head{padding:calc(var(--nav-h) + 40px) 0 30px;position:relative;overflow:hidden}
+    .doc-head::before{content:'';position:absolute;top:-180px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(224,122,95,0.10),rgba(129,178,154,0.06) 55%,transparent 80%);pointer-events:none}
+    .crumbs{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:18px;flex-wrap:wrap}
+    .crumbs a{transition:color .2s}
+    .crumbs a:hover{color:var(--terracotta)}
+    .crumbs .sep{opacity:.5}
+    .crumbs .here{color:var(--text)}
+    .doc-head h1{font-size:clamp(30px,4.4vw,50px);font-weight:800;letter-spacing:-1.6px;max-width:18ch}
+    .doc-head .lead{font-size:clamp(16px,2vw,19px);color:var(--muted);font-weight:500;max-width:60ch;margin-top:14px}
 
-    /* ---- FAQ (identical to home page accordion) ---- */
-    .faq-list{margin-top:36px;display:flex;flex-direction:column;gap:8px}
-    .faq-item{background:var(--surface);border-radius:14px;border:1px solid rgba(124,127,148,0.10);padding:16px 22px;cursor:pointer;transition:border-color .2s}
+    /* ---- DOC LAYOUT: sidebar + article ---- */
+    .doc-wrap{display:grid;grid-template-columns:236px minmax(0,1fr);gap:56px;align-items:start;padding:24px 0 40px}
+
+    /* sidebar TOC */
+    .toc{position:sticky;top:calc(var(--nav-h) + 28px);align-self:start}
+    .toc-title{font-family:'Fraunces',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);padding:0 14px 10px}
+    .toc-list{list-style:none;display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line)}
+    .toc-list a{display:flex;align-items:center;gap:10px;padding:9px 14px;margin-left:-2px;border-left:2px solid transparent;font-weight:600;font-size:14px;color:var(--muted);transition:color .2s,border-color .2s,background .2s;border-radius:0 8px 8px 0}
+    .toc-list a:hover{color:var(--text);background:rgba(124,127,148,0.05)}
+    .toc-list a.active{color:var(--terracotta);border-left-color:var(--terracotta);background:var(--terracotta-soft)}
+    .toc-list .num{font-family:'Fraunces',sans-serif;font-weight:700;font-size:12px;opacity:.7}
+
+    /* article */
+    .article{min-width:0}
+    .doc-section{padding:8px 0 56px;scroll-margin-top:84px}
+    .doc-section + .doc-section{border-top:1px solid var(--line);padding-top:48px}
+    .sec-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Fraunces',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1.6px;color:var(--sage);margin-bottom:12px}
+    .sec-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--sage)}
+    .doc-section h2{font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-1px;margin-bottom:10px}
+    .doc-section .sec-intro{color:var(--muted);font-size:16px;max-width:62ch;margin-bottom:28px}
+
+    /* how-to entry: text + numbered steps + optional shot */
+    .howto{margin-top:28px}
+    .howto:first-of-type{margin-top:8px}
+    .howto-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+    .howto h3{font-family:'Fraunces',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.3px}
+    .howto .blurb{color:var(--muted);font-size:15.5px;max-width:62ch;margin-bottom:16px}
+    .feat-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;background:linear-gradient(135deg,rgba(224,122,95,0.16),rgba(242,204,143,0.26));color:#B07D3A;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;align-self:center}
+
+    /* two-up: steps on the left, screenshot on the right */
+    .howto-grid{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:36px;align-items:start}
+    .howto-grid.no-shot{grid-template-columns:minmax(0,1fr)}
+
+    .steps{list-style:none;counter-reset:step;display:flex;flex-direction:column;gap:14px}
+    .steps li{position:relative;padding-left:42px;font-size:15.5px;color:var(--text);min-height:28px}
+    .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:50%;background:var(--surface);border:1.5px solid var(--terracotta);color:var(--terracotta);font-family:'Fraunces',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+    .steps li::after{content:'';position:absolute;left:13.5px;top:30px;bottom:-16px;width:1.5px;background:linear-gradient(var(--terracotta-soft),transparent)}
+    .steps li:last-child::after{display:none}
+    .steps li b{font-weight:700;color:var(--text)}
+    .kbd{display:inline-flex;align-items:center;padding:1px 7px;border-radius:6px;background:var(--surface);border:1px solid var(--line);font-family:'Fraunces',sans-serif;font-weight:700;font-size:13px;color:var(--slate);line-height:1.5}
+
+    /* note / tip callout */
+    .note{margin-top:18px;display:flex;gap:12px;padding:14px 16px;border-radius:14px;background:var(--sage-soft);border:1px solid rgba(129,178,154,0.28)}
+    .note svg{width:18px;height:18px;flex-shrink:0;color:var(--sage);margin-top:2px}
+    .note p{font-size:14.5px;color:var(--text);margin:0}
+    .note b{font-weight:700}
+
+    /* phone-frame screenshot slot (drop a PNG into <img> later) */
+    .shot{position:sticky;top:calc(var(--nav-h) + 28px)}
+    .phone{position:relative;width:100%;max-width:240px;margin:0 auto;aspect-ratio:9/19;border-radius:34px;background:linear-gradient(160deg,#fff,var(--surface));border:1px solid var(--line);box-shadow:0 20px 50px rgba(61,64,91,0.12),0 4px 12px rgba(61,64,91,0.06);padding:9px;overflow:hidden}
+    .phone::before{content:'';position:absolute;top:11px;left:50%;transform:translateX(-50%);width:42%;height:7px;border-radius:99px;background:rgba(61,64,91,0.10);z-index:2}
+    .phone-screen{width:100%;height:100%;border-radius:26px;overflow:hidden;background:repeating-linear-gradient(135deg,var(--cream),var(--cream) 14px,rgba(224,122,95,0.05) 14px,rgba(224,122,95,0.05) 28px);display:flex;align-items:center;justify-content:center}
+    .phone-screen img{width:100%;height:100%;object-fit:cover}
+    .phone-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);text-align:center;padding:18px}
+    .phone-ph svg{width:30px;height:30px;opacity:.55}
+    .phone-ph span{font-size:11.5px;font-weight:600;line-height:1.4;max-width:15ch}
+    .shot-cap{text-align:center;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:14px}
+
+    /* ---- FAQ ---- */
+    .faq-section{padding:56px 0;border-top:1px solid var(--line)}
+    .faq-head{max-width:760px;margin:0 auto 28px}
+    .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+    .faq-item{background:var(--surface);border-radius:14px;border:1px solid var(--line);padding:4px 22px;transition:border-color .2s}
     .faq-item[open]{border-color:rgba(129,178,154,0.4)}
-    .faq-item summary{font-family:'Fraunces',sans-serif;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    .faq-item summary{font-family:'Fraunces',sans-serif;font-weight:700;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;padding:14px 0}
     .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary::after{content:'+';font-size:24px;color:var(--muted);transition:transform .2s,color .2s}
+    .faq-item summary::after{content:'+';font-size:24px;color:var(--muted);transition:color .2s;flex-shrink:0}
     .faq-item[open] summary::after{content:'−';color:var(--sage)}
-    .faq-item p{margin-top:12px;color:var(--muted);font-size:15px;line-height:1.6}
+    .faq-item p{color:var(--muted);font-size:15px;line-height:1.6;padding:0 0 16px}
 
-    /* ---- CTA BANNER ---- */
-    .cta-section{padding:80px 0 100px}
-    .cta-banner{background:linear-gradient(135deg,var(--terracotta),#C8553D);border-radius:28px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+    /* ---- CTA ---- */
+    .cta-section{padding:30px 0 90px}
+    .cta-banner{background:linear-gradient(135deg,var(--terracotta),#C8553D);border-radius:28px;padding:56px 40px;text-align:center;position:relative;overflow:hidden}
     .cta-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.08)}
     .cta-banner::after{content:'';position:absolute;bottom:-30px;left:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,0.05)}
-    .cta-banner h2{color:white;font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;margin-bottom:8px;position:relative;z-index:1}
-    .cta-banner p{color:rgba(255,255,255,0.8);font-size:17px;margin-bottom:28px;position:relative;z-index:1}
+    .cta-banner h2{color:white;font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-1px;margin-bottom:8px;position:relative;z-index:1}
+    .cta-banner p{color:rgba(255,255,255,0.85);font-size:16px;margin-bottom:26px;position:relative;z-index:1}
     .cta-banner-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
     .cta-banner .btn{background:white;color:var(--terracotta)}
     .cta-banner .btn-ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.5)}
     .cta-banner .btn-ghost:hover{border-color:white;background:rgba(255,255,255,0.08)}
-    .cta-banner .btn:hover{box-shadow:0 8px 32px rgba(0,0,0,0.15)}
 
     /* ---- FOOTER ---- */
-    footer{padding:40px 0;border-top:1px solid rgba(124,127,148,0.08)}
+    footer{padding:40px 0;border-top:1px solid var(--line)}
     .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
     .footer-brand{display:flex;align-items:center;gap:8px}
     .footer-brand svg{width:20px;height:20px}
     .footer-brand span{font-family:'Fraunces',sans-serif;font-weight:700;font-size:15px}
-    .footer-links{display:flex;gap:24px}
+    .footer-links{display:flex;gap:22px;flex-wrap:wrap}
     .footer-links a{font-size:14px;color:var(--muted);font-weight:600;transition:color .2s}
     .footer-links a:hover{color:var(--sage)}
-    .footer-copy{font-size:12px;color:var(--muted);width:100%;text-align:center;margin-top:16px}
+    .footer-langs{display:flex;justify-content:center;gap:16px;margin-top:14px}
+    .footer-langs a{font-size:13px;font-weight:600;color:var(--muted)}
+    .footer-langs a.cur{font-weight:700;color:var(--text)}
+    .footer-copy{font-size:12px;color:var(--muted);width:100%;text-align:center;margin-top:14px}
 
     /* ---- SCROLL REVEAL ---- */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
     .reveal.visible{opacity:1;transform:translateY(0)}
-    .reveal-d1{transition-delay:.1s}
-    .reveal-d2{transition-delay:.2s}
-    .reveal-d3{transition-delay:.3s}
-    .reveal-d4{transition-delay:.4s}
-
-    /* ---- GUIDE HERO ---- */
-    .guide-hero{padding:140px 0 72px;text-align:center;position:relative;overflow:hidden}
-    .guide-hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(closest-side,rgba(224,122,95,0.09),rgba(129,178,154,0.07) 55%,transparent 80%);pointer-events:none}
-    .guide-hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-2px;margin-bottom:14px}
-    .guide-hero .subtitle{font-size:clamp(16px,2.2vw,20px);color:var(--muted);font-weight:500;max-width:540px;margin:0 auto}
-
-    /* ---- ANCHOR NAV ---- */
-    .anchor-nav{padding:0 0 56px;display:flex;justify-content:center}
-    .anchor-nav-inner{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-    .anchor-link{padding:8px 18px;border-radius:999px;font-family:'Fraunces',sans-serif;font-weight:700;font-size:14px;background:var(--surface);border:1px solid rgba(124,127,148,0.12);color:var(--text);transition:background .2s,color .2s,border-color .2s}
-    .anchor-link:hover{background:var(--terracotta);color:white;border-color:var(--terracotta)}
-
-    /* ---- GUIDE SECTIONS ---- */
-    .guide-section{padding:72px 0;position:relative}
-    .guide-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,127,148,0.12),transparent)}
-    .guide-section-header{margin-bottom:36px}
-    .section-label{font-family:'Fraunces',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--sage);margin-bottom:10px}
-    .guide-section h2{font-size:clamp(26px,3.5vw,40px);font-weight:800;letter-spacing:-1px}
-    .guide-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
-    .guide-card{background:var(--surface);border-radius:20px;padding:28px 24px;border:1px solid rgba(124,127,148,0.10);transition:transform .3s,box-shadow .3s}
-    .feat-badge{display:inline-flex;align-items:center;gap:4px;margin-left:8px;padding:2px 9px;border-radius:999px;background:linear-gradient(135deg,rgba(224,122,95,0.14),rgba(242,204,143,0.22));color:#B07D3A;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;vertical-align:middle;text-transform:uppercase}
-    .guide-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(61,64,91,0.07)}
-    .guide-card-title{font-family:'Fraunces',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px;display:flex;align-items:center;flex-wrap:wrap;gap:7px;line-height:1.3}
-    .guide-card p{color:var(--muted);font-size:15px;line-height:1.6}
-
-    /* ---- FAQ SECTION ---- */
-    .faq-section{padding:72px 0;position:relative}
-    .faq-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,127,148,0.12),transparent)}
 
     /* ---- RESPONSIVE ---- */
-    @media(max-width:768px){
-      .cta-banner{padding:40px 24px}
-      nav{padding:12px 20px}
-      .anchor-nav-inner{gap:6px}
-      .anchor-link{padding:7px 14px;font-size:13px}
-      .guide-cards{grid-template-columns:1fr}
+    @media(max-width:980px){
+      .doc-wrap{grid-template-columns:minmax(0,1fr);gap:0}
+      /* grid tracks must be allowed to shrink so the strip clips, not expands */
+      .toc,.article{min-width:0;max-width:100%}
+      /* TOC becomes a horizontal scroll strip pinned under the nav.
+         It spans the full viewport via 100vw + centering, and its inner list
+         scrolls horizontally — clipped, never expanding the page. */
+      .toc{position:sticky;top:var(--nav-h);z-index:50;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-bottom:8px;padding:10px 0;background:rgba(244,241,222,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);overflow:hidden}
+      .toc-title{display:none}
+      .toc-list{flex-direction:row;border-left:none;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 18px;scrollbar-width:none;max-width:100%}
+      .toc-list::-webkit-scrollbar{display:none}
+      .toc-list a{border:1px solid var(--line);border-radius:999px;margin-left:0;padding:7px 14px;white-space:nowrap;color:var(--text);flex:0 0 auto}
+      .toc-list a.active{background:var(--terracotta);color:#fff;border-color:var(--terracotta)}
+      /* steps + shot stack */
+      .howto-grid{grid-template-columns:1fr;gap:22px}
+      .shot{position:static}
+      .phone{max-width:220px}
     }
-    @media(max-width:480px){
-      .guide-hero{padding:120px 0 56px}
-      .guide-hero h1{letter-spacing:-1px}
+    @media(max-width:600px){
+      .container{padding:0 18px}
+      nav.site{padding:0 18px}
+      .toc{margin:0 -18px 8px}
+      .toc-list{padding:0 18px}
+      .doc-head{padding:calc(var(--nav-h) + 28px) 0 22px}
+      .doc-head h1{letter-spacing:-1px}
+      .cta-banner{padding:40px 22px}
+      .steps li{padding-left:38px;font-size:15px}
+      .nav-link{display:none}
     }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="nav" aria-label="Site">
+<nav class="site" id="nav" aria-label="Site">
   <a href="/en/" class="nav-logo">
     <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#E07A5F"/><g transform="translate(50 51) scale(0.62) translate(-50 -51)"><line x1="21" y1="19" x2="79" y2="19" stroke="#fff" stroke-width="16" stroke-linecap="round"/><circle cx="50" cy="42" r="6.5" fill="#fff"/><circle cx="50" cy="60" r="6.5" fill="#fff"/><circle cx="50" cy="83" r="8.5" stroke="#F2CC8F" stroke-width="6"/></g></svg>
     <span>Tragitto</span>
   </a>
-  <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="nav-cta">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
-    Get the App
-  </a>
+  <div class="nav-right">
+    <a href="/en/guide/" class="nav-link active">Guide</a>
+    <a href="https://play.google.com/store/apps/details?id=com.flatmap.tripline" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>
+      Get the App
+    </a>
+  </div>
 </nav>
 
-<!-- GUIDE HERO -->
-<header class="guide-hero">
+<!-- DOC HEADER -->
+<header class="doc-head">
   <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/en/">Home</a>
+      <span class="sep" aria-hidden="true">›</span>
+      <span class="here">Guide</span>
+    </nav>
     <h1>How to use Tragitto</h1>
-    <p class="subtitle">Everything you can do — and exactly how to do it.</p>
+    <p class="lead">Everything you can do — and exactly how to do it. Follow the steps, peek at the screens, and plan your next trip with confidence.</p>
   </div>
 </header>
 
-<!-- ANCHOR NAV -->
-<nav class="anchor-nav" aria-label="Jump to section">
-  <div class="anchor-nav-inner">
-    <a href="#getting-started" class="anchor-link">Getting started</a>
-    <a href="#itinerary" class="anchor-link">Itinerary</a>
-    <a href="#together" class="anchor-link">Plan together</a>
-    <a href="#ai" class="anchor-link">AI Concierge</a>
-    <a href="#safety" class="anchor-link">Safety</a>
-    <a href="#faq" class="anchor-link">FAQ</a>
-  </div>
-</nav>
+<!-- DOC BODY: sidebar TOC + article -->
+<div class="container">
+  <div class="doc-wrap">
 
-<!-- SECTION 1: GETTING STARTED -->
-<section class="guide-section" id="getting-started">
-  <div class="container">
-    <div class="guide-section-header reveal">
-      <p class="section-label">01</p>
-      <h2>Getting started</h2>
-    </div>
-    <div class="guide-cards">
-      <div class="guide-card reveal reveal-d1">
-        <h3 class="guide-card-title">Create your first trip</h3>
-        <p>Tap the + button on the Trips screen. Give your trip a name, add your destination, and pick your start and end dates. Tap Create and your shared timeline opens right away.</p>
-      </div>
-      <div class="guide-card reveal reveal-d2">
-        <h3 class="guide-card-title">Sign in</h3>
-        <p>Use your email to get a 6-digit code, or continue with Google or Apple. There's no password to remember, and the same account syncs across every device.</p>
-      </div>
-      <div class="guide-card reveal reveal-d3">
-        <h3 class="guide-card-title">Find your way around</h3>
-        <p>Your timeline is the heart of each trip. The glowing orb opens the AI Concierge, and the ••• menu (top right) holds sharing, auto-import, notifications, export, and more.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- SIDEBAR TABLE OF CONTENTS -->
+    <aside class="toc">
+      <p class="toc-title">On this page</p>
+      <nav aria-label="Table of contents">
+        <ul class="toc-list" id="toc">
+          <li><a href="#getting-started"><span class="num">01</span> Getting started</a></li>
+          <li><a href="#itinerary"><span class="num">02</span> Build your itinerary</a></li>
+          <li><a href="#together"><span class="num">03</span> Plan together</a></li>
+          <li><a href="#ai"><span class="num">04</span> Let AI do the work</a></li>
+          <li><a href="#safety"><span class="num">05</span> Travel safely</a></li>
+          <li><a href="#faq"><span class="num">06</span> FAQ</a></li>
+        </ul>
+      </nav>
+    </aside>
 
-<!-- SECTION 2: BUILD YOUR ITINERARY -->
-<section class="guide-section" id="itinerary">
-  <div class="container">
-    <div class="guide-section-header reveal">
-      <p class="section-label">02</p>
-      <h2>Build your itinerary</h2>
-    </div>
-    <div class="guide-cards">
-      <div class="guide-card reveal reveal-d1">
-        <h3 class="guide-card-title">Add a flight, hotel, or activity</h3>
-        <p>Tap + on the timeline, pick a category, then the type, then fill in the details — title, place, date and time. Every time shows in the local timezone of where it happens, so a flight that lands at 3pm local reads as 3pm.</p>
-      </div>
-      <div class="guide-card reveal reveal-d2">
-        <h3 class="guide-card-title">Attach tickets &amp; documents</h3>
-        <p>Open any item and add your boarding passes or confirmations as PDFs — up to five tickets and five documents per item, so everything travels with you.</p>
-      </div>
-      <div class="guide-card reveal reveal-d3">
-        <h3 class="guide-card-title">Edit or remove an item</h3>
-        <p>Tap an item to edit it, then Save. To remove one, swipe it left and tap Delete.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ARTICLE -->
+    <article class="article">
 
-<!-- SECTION 3: PLAN TOGETHER -->
-<section class="guide-section" id="together">
-  <div class="container">
-    <div class="guide-section-header reveal">
-      <p class="section-label">03</p>
-      <h2>Plan together</h2>
-    </div>
-    <div class="guide-cards">
-      <div class="guide-card reveal reveal-d1">
-        <h3 class="guide-card-title">Editors vs. followers</h3>
-        <p>Editors can add and change items alongside you. Followers — like family back home — see the plan and your updates but can't edit. You choose each person's role when you invite them.</p>
-      </div>
-      <div class="guide-card reveal reveal-d2">
-        <h3 class="guide-card-title">Invite &amp; share a link</h3>
-        <p>Open the members area or the ••• menu and share your trip link. Anyone who taps it joins in their role — no separate account needed, a Google sign-in works.</p>
-      </div>
-      <div class="guide-card reveal reveal-d3">
-        <h3 class="guide-card-title">The follower view</h3>
-        <p>Followers see your itinerary, schedule, and any location you choose to share — never your booking references, chat, or private notes. A small badge reminds them they're viewing, not editing.</p>
-      </div>
-      <div class="guide-card reveal reveal-d4">
-        <h3 class="guide-card-title">Sync &amp; offline</h3>
-        <p>Your trip lives on your device, so you can view and edit even on a plane. Everything syncs the moment you're back online, and you'll see your companions' changes in real time.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- 01 GETTING STARTED -->
+      <section class="doc-section" id="getting-started">
+        <div class="reveal">
+          <p class="sec-eyebrow"><span class="dot"></span> Step 01</p>
+          <h2>Getting started</h2>
+          <p class="sec-intro">Create your first trip, sign in, and learn your way around the app in a couple of minutes.</p>
+        </div>
 
-<!-- SECTION 4: LET AI DO THE WORK -->
-<section class="guide-section" id="ai">
-  <div class="container">
-    <div class="guide-section-header reveal">
-      <p class="section-label">04</p>
-      <h2>Let AI do the work</h2>
-    </div>
-    <div class="guide-cards">
-      <div class="guide-card reveal reveal-d1">
-        <h3 class="guide-card-title">Forward booking emails <span class="feat-badge">Premium</span></h3>
-        <p>Each trip has its own email address. Forward a flight, hotel, or restaurant confirmation and the AI reads it and adds the details to your timeline. Find the address under ••• → Auto-import.</p>
-      </div>
-      <div class="guide-card reveal reveal-d2">
-        <h3 class="guide-card-title">Ask the AI Concierge <span class="feat-badge">Premium</span></h3>
-        <p>Tap the orb to chat. Ask for restaurant ideas, a walking route, or a full day plan — it knows your dates, pace, and budget.</p>
-      </div>
-      <div class="guide-card reveal reveal-d3">
-        <h3 class="guide-card-title">Auto-plan a day <span class="feat-badge">Premium</span></h3>
-        <p>From an empty day or a day header, ask the Concierge to plan it. It suggests a relaxed, realistic day you can accept, tweak, or ignore.</p>
-      </div>
-      <div class="guide-card reveal reveal-d4">
-        <h3 class="guide-card-title">Fix readiness issues <span class="feat-badge">Premium</span></h3>
-        <p>Tragitto flags gaps like a missing hotel or a tight connection, with a readiness score. Tap Fix and the Concierge proposes a solution you can add in a tap.</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Create your first trip</h3></div>
+          <p class="blurb">Your trip is a shared timeline everyone can see. Setting one up takes about thirty seconds.</p>
+          <div class="howto-grid">
+            <ol class="steps">
+              <li>Open the app and tap the <span class="kbd">+</span> button on the <b>Trips</b> screen.</li>
+              <li>Give your trip a <b>name</b> and add your <b>destination</b>.</li>
+              <li>Pick your <b>start</b> and <b>end</b> dates.</li>
+              <li>Tap <b>Create</b> — your shared timeline opens right away.</li>
+            </ol>
+            <figure class="shot">
+              <div class="phone"><div class="phone-screen">
+                <div class="phone-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg><span>New trip screen</span></div>
+              </div></div>
+              <figcaption class="shot-cap">Creating a trip</figcaption>
+            </figure>
+          </div>
+        </div>
 
-<!-- SECTION 5: TRAVEL SAFELY -->
-<section class="guide-section" id="safety">
-  <div class="container">
-    <div class="guide-section-header reveal">
-      <p class="section-label">05</p>
-      <h2>Travel safely &amp; stay informed</h2>
-    </div>
-    <div class="guide-cards">
-      <div class="guide-card reveal reveal-d1">
-        <h3 class="guide-card-title">Share live location <span class="feat-badge">Premium</span></h3>
-        <p>Open ••• → Share location and pick how long. Your companions can follow your dot for peace of mind, and sharing stops automatically when the time's up.</p>
-      </div>
-      <div class="guide-card reveal reveal-d2">
-        <h3 class="guide-card-title">Check-ins &amp; arrivals</h3>
-        <p>Followers can ask if you're safe, and you can confirm arrivals as you reach each place — keeping everyone reassured without a flood of messages.</p>
-      </div>
-      <div class="guide-card reveal reveal-d3">
-        <h3 class="guide-card-title">Notifications &amp; quiet hours</h3>
-        <p>Open ••• → Notifications to choose what you hear about — reminders, arrivals, suggestions — and set quiet hours so nothing buzzes overnight.</p>
-      </div>
-      <div class="guide-card reveal reveal-d1">
-        <h3 class="guide-card-title">Export your trip as PDF</h3>
-        <p>Open ••• → Export as PDF for a clean, shareable itinerary with every day and detail — handy for offline backups or sharing outside the app.</p>
-      </div>
-      <div class="guide-card reveal reveal-d2">
-        <h3 class="guide-card-title">Emergency contact card</h3>
-        <p>Keep emergency details on hand and share them in a tap, so help is never more than a moment away.</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Sign in</h3></div>
+          <p class="blurb">No password to remember — and the same account syncs across every device.</p>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>Choose <b>Continue with email</b> and we'll send a <b>6-digit code</b>, or pick <b>Google</b> or <b>Apple</b>.</li>
+              <li>Enter the code (or approve the social sign-in) and you're in.</li>
+            </ol>
+          </div>
+        </div>
 
-<!-- FAQ -->
-<section class="faq-section" id="faq">
-  <div class="container" style="max-width:760px">
-    <div class="reveal">
-      <p class="section-label">FAQ</p>
-      <h2 style="font-size:clamp(26px,3.5vw,40px);font-weight:800;letter-spacing:-1px">Common questions.</h2>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item reveal reveal-d1">
-        <summary>Is Tragitto free?</summary>
-        <p>Yes — planning is free. Download the app, create trips, build your timeline by hand, invite companions, and share in real time at no cost. The <strong>AI Concierge</strong> and <strong>email &amp; booking forwarding</strong> are Premium, unlocked per trip.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>What does Premium cost?</summary>
-        <p>Premium is a one-time purchase per trip during our beta — you'll see the exact price in the app before you buy. It unlocks the AI Concierge and booking forwarding for that trip, with a generous AI allowance. Need more? You can top up tokens anytime. Premium is available on both iPhone and Android.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>When does Premium activate and expire?</summary>
-        <p>Premium activates the moment you create the trip and stays active until shortly after the trip ends — so it's there throughout your planning and travel. Each new trip is its own purchase.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>Do my travel companions need to install the app?</summary>
-        <p>Owners and editors do — they can add and modify items. Followers (parents, partners) can install too, or simply receive read-only updates. Either way, no separate accounts are required: a Google sign-in works.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>What's the difference between an editor and a follower?</summary>
-        <p>Editors add and change items with you. Followers see the plan and your updates — including any location you share — but can't edit. Pick a role when you invite someone.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>How does forwarding bookings work?</summary>
-        <p>Each trip gets a unique forwarding email address. Forward your flight, hotel, or restaurant confirmations there, and our AI extracts the dates, times, locations, and confirmation numbers automatically — adding them to the shared timeline.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>Do my bookings get added automatically?</summary>
-        <p>Yes, on Premium. Forward a confirmation to your trip's email address and the AI extracts the dates, times, places, and confirmation numbers and adds them to your timeline.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>Can I use the app offline, like on a plane?</summary>
-        <p>Absolutely. Your trip lives on your device — view, add, and edit anytime. Everything syncs when you're back online, including AI suggestions you queued.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>Who can see my data?</summary>
-        <p>Only people you invite. We don't sell or share your trip data. Followers see only your itinerary and (optional) live location — never your booking references, chat, or notes.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>Is my location private?</summary>
-        <p>Yes. Location sharing is off until you start it, you choose how long, and it stops automatically. Only people on your trip can see it, and followers never see your bookings, chat, or notes.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>How do I cancel or get a refund?</summary>
-        <p>Premium is a one-time per-trip purchase, so there's nothing to cancel. For refunds, use the standard process on the App Store or Google Play.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>Which devices does Tragitto support?</summary>
-        <p>iPhone (iOS 16+) and Android (Android 8+). Same account, same data, real-time sync between every device.</p>
-      </details>
-      <details class="faq-item reveal reveal-d1">
-        <summary>What languages does Tragitto support?</summary>
-        <p>The app is available in English, Portuguese, and Spanish, and we're adding more.</p>
-      </details>
-    </div>
-  </div>
-</section>
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Find your way around</h3></div>
+          <p class="blurb">The timeline is the heart of each trip. Two controls do most of the work.</p>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>The glowing <b>orb</b> opens the <b>AI Concierge</b>.</li>
+              <li>The <span class="kbd">•••</span> menu (top right) holds sharing, auto-import, notifications, export, and more.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
 
-<!-- CTA BANNER -->
+      <!-- 02 ITINERARY -->
+      <section class="doc-section" id="itinerary">
+        <div class="reveal">
+          <p class="sec-eyebrow"><span class="dot"></span> Step 02</p>
+          <h2>Build your itinerary</h2>
+          <p class="sec-intro">Add flights, hotels, and activities, attach your tickets, and keep everything tidy.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Add a flight, hotel, or activity</h3></div>
+          <p class="blurb">Each item lands on the timeline in the local timezone of where it happens.</p>
+          <div class="howto-grid">
+            <ol class="steps">
+              <li>Tap <span class="kbd">+</span> on the timeline.</li>
+              <li>Pick a <b>category</b>, then the <b>type</b>.</li>
+              <li>Fill in the details — <b>title, place, date and time</b>.</li>
+              <li>Save. A flight that lands at 3pm local reads as <b>3pm</b>, wherever you are.</li>
+            </ol>
+            <figure class="shot">
+              <div class="phone"><div class="phone-screen">
+                <div class="phone-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h12"/></svg><span>Add-item screen</span></div>
+              </div></div>
+              <figcaption class="shot-cap">Adding a timeline item</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Attach tickets &amp; documents</h3></div>
+          <p class="blurb">Keep boarding passes and confirmations where you'll actually find them.</p>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>Open any item and scroll to <b>Tickets</b> or <b>Documents</b>.</li>
+              <li>Add PDFs — up to <b>five tickets and five documents</b> per item.</li>
+            </ol>
+          </div>
+          <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><p>PDFs travel with the trip, so they're available even offline on the plane.</p></div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Edit or remove an item</h3></div>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li><b>Tap</b> an item to edit it, then <b>Save</b>.</li>
+              <li>To remove one, <b>swipe it left</b> and tap <b>Delete</b>.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 PLAN TOGETHER -->
+      <section class="doc-section" id="together">
+        <div class="reveal">
+          <p class="sec-eyebrow"><span class="dot"></span> Step 03</p>
+          <h2>Plan together</h2>
+          <p class="sec-intro">Invite the people on your trip — and the people back home — each with the right level of access.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Editors vs. followers</h3></div>
+          <p class="blurb">You choose each person's role when you invite them.</p>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li><b>Editors</b> add and change items alongside you.</li>
+              <li><b>Followers</b> — like family back home — see the plan and your updates, but can't edit.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Invite &amp; share a link</h3></div>
+          <div class="howto-grid">
+            <ol class="steps">
+              <li>Open the <b>members</b> area or the <span class="kbd">•••</span> menu.</li>
+              <li>Share your <b>trip link</b>.</li>
+              <li>Anyone who taps it joins in their role — <b>no separate account</b> needed, a Google sign-in works.</li>
+            </ol>
+            <figure class="shot">
+              <div class="phone"><div class="phone-screen">
+                <div class="phone-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M15 11l4-4M19 7h-3M19 7v3M3 20c0-3 3-5 6-5s6 2 6 5"/></svg><span>Invite &amp; share screen</span></div>
+              </div></div>
+              <figcaption class="shot-cap">Sharing a trip link</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>The follower view</h3></div>
+          <p class="blurb">Followers see your itinerary, schedule, and any location you choose to share — never your booking references, chat, or private notes. A small badge reminds them they're viewing, not editing.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Sync &amp; offline</h3></div>
+          <p class="blurb">Your trip lives on your device, so you can view and edit even on a plane. Everything syncs the moment you're back online, and you'll see your companions' changes in real time.</p>
+        </div>
+      </section>
+
+      <!-- 04 AI -->
+      <section class="doc-section" id="ai">
+        <div class="reveal">
+          <p class="sec-eyebrow"><span class="dot"></span> Step 04</p>
+          <h2>Let AI do the work</h2>
+          <p class="sec-intro">The AI Concierge and email forwarding are Premium, unlocked per trip — they turn a pile of bookings into a plan.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Forward booking emails</h3> <span class="feat-badge">Premium</span></div>
+          <p class="blurb">Stop copying details by hand — let the AI read your confirmations.</p>
+          <div class="howto-grid">
+            <ol class="steps">
+              <li>Open <span class="kbd">•••</span> → <b>Auto-import</b> to find your trip's unique email address.</li>
+              <li><b>Forward</b> a flight, hotel, or restaurant confirmation to it.</li>
+              <li>The AI extracts the details and <b>adds them to your timeline</b> automatically.</li>
+            </ol>
+            <figure class="shot">
+              <div class="phone"><div class="phone-screen">
+                <div class="phone-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span>Auto-import screen</span></div>
+              </div></div>
+              <figcaption class="shot-cap">Forwarding a booking</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Ask the AI Concierge</h3> <span class="feat-badge">Premium</span></div>
+          <p class="blurb">It knows your dates, pace, and budget — so ask for anything.</p>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>Tap the <b>orb</b> to open the chat.</li>
+              <li>Ask for <b>restaurant ideas</b>, a <b>walking route</b>, or a <b>full day plan</b>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Auto-plan a day</h3> <span class="feat-badge">Premium</span></div>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>From an empty day or a <b>day header</b>, ask the Concierge to plan it.</li>
+              <li>It suggests a relaxed, realistic day you can <b>accept, tweak, or ignore</b>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Fix readiness issues</h3> <span class="feat-badge">Premium</span></div>
+          <p class="blurb">Tragitto flags gaps like a missing hotel or a tight connection, with a readiness score.</p>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>Open the <b>readiness</b> strip and review the findings.</li>
+              <li>Tap <b>Fix</b> and the Concierge proposes a solution you can add in a tap.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 SAFETY -->
+      <section class="doc-section" id="safety">
+        <div class="reveal">
+          <p class="sec-eyebrow"><span class="dot"></span> Step 05</p>
+          <h2>Travel safely &amp; stay informed</h2>
+          <p class="sec-intro">Share where you are, confirm you've arrived, and keep everyone reassured — without a flood of messages.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Share live location</h3> <span class="feat-badge">Premium</span></div>
+          <p class="blurb">Sharing stops automatically when the time's up.</p>
+          <div class="howto-grid">
+            <ol class="steps">
+              <li>Open <span class="kbd">•••</span> → <b>Share location</b>.</li>
+              <li>Pick <b>how long</b> to share.</li>
+              <li>Your companions can follow your dot for peace of mind.</li>
+            </ol>
+            <figure class="shot">
+              <div class="phone"><div class="phone-screen">
+                <div class="phone-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Share-location screen</span></div>
+              </div></div>
+              <figcaption class="shot-cap">Sharing live location</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Check-ins &amp; arrivals</h3></div>
+          <p class="blurb">Followers can ask if you're safe, and you can confirm arrivals as you reach each place — keeping everyone reassured without a flood of messages.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Notifications &amp; quiet hours</h3></div>
+          <div class="howto-grid no-shot">
+            <ol class="steps">
+              <li>Open <span class="kbd">•••</span> → <b>Notifications</b>.</li>
+              <li>Choose what you hear about — reminders, arrivals, suggestions.</li>
+              <li>Set <b>quiet hours</b> so nothing buzzes overnight.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Export your trip as PDF</h3></div>
+          <p class="blurb">Open <span class="kbd">•••</span> → <b>Export as PDF</b> for a clean, shareable itinerary with every day and detail — handy for offline backups or sharing outside the app.</p>
+        </div>
+
+        <div class="howto reveal">
+          <div class="howto-head"><h3>Emergency contact card</h3></div>
+          <p class="blurb">Keep emergency details on hand and share them in a tap, so help is never more than a moment away.</p>
+        </div>
+      </section>
+
+      <!-- 06 FAQ -->
+      <section class="faq-section" id="faq" style="border-top:none;padding-top:8px">
+        <div class="faq-head reveal">
+          <p class="sec-eyebrow"><span class="dot"></span> FAQ</p>
+          <h2 style="font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-1px">Common questions</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal"><summary>Is Tragitto free?</summary><p>Yes — planning is free. Download the app, create trips, build your timeline by hand, invite companions, and share in real time at no cost. The <strong>AI Concierge</strong> and <strong>email &amp; booking forwarding</strong> are Premium, unlocked per trip.</p></details>
+          <details class="faq-item reveal"><summary>What does Premium cost?</summary><p>Premium is a one-time purchase per trip during our beta — you'll see the exact price in the app before you buy. It unlocks the AI Concierge and booking forwarding for that trip, with a generous AI allowance. Need more? You can top up tokens anytime. Premium is available on both iPhone and Android.</p></details>
+          <details class="faq-item reveal"><summary>When does Premium activate and expire?</summary><p>Premium activates the moment you create the trip and stays active until shortly after the trip ends — so it's there throughout your planning and travel. Each new trip is its own purchase.</p></details>
+          <details class="faq-item reveal"><summary>Do my travel companions need to install the app?</summary><p>Owners and editors do — they can add and modify items. Followers (parents, partners) can install too, or simply receive read-only updates. Either way, no separate accounts are required: a Google sign-in works.</p></details>
+          <details class="faq-item reveal"><summary>What's the difference between an editor and a follower?</summary><p>Editors add and change items with you. Followers see the plan and your updates — including any location you share — but can't edit. Pick a role when you invite someone.</p></details>
+          <details class="faq-item reveal"><summary>How does forwarding bookings work?</summary><p>Each trip gets a unique forwarding email address. Forward your flight, hotel, or restaurant confirmations there, and our AI extracts the dates, times, locations, and confirmation numbers automatically — adding them to the shared timeline.</p></details>
+          <details class="faq-item reveal"><summary>Do my bookings get added automatically?</summary><p>Yes, on Premium. Forward a confirmation to your trip's email address and the AI extracts the dates, times, places, and confirmation numbers and adds them to your timeline.</p></details>
+          <details class="faq-item reveal"><summary>Can I use the app offline, like on a plane?</summary><p>Absolutely. Your trip lives on your device — view, add, and edit anytime. Everything syncs when you're back online, including AI suggestions you queued.</p></details>
+          <details class="faq-item reveal"><summary>Who can see my data?</summary><p>Only people you invite. We don't sell or share your trip data. Followers see only your itinerary and (optional) live location — never your booking references, chat, or notes.</p></details>
+          <details class="faq-item reveal"><summary>Is my location private?</summary><p>Yes. Location sharing is off until you start it, you choose how long, and it stops automatically. Only people on your trip can see it, and followers never see your bookings, chat, or notes.</p></details>
+          <details class="faq-item reveal"><summary>How do I cancel or get a refund?</summary><p>Premium is a one-time per-trip purchase, so there's nothing to cancel. For refunds, use the standard process on the App Store or Google Play.</p></details>
+          <details class="faq-item reveal"><summary>Which devices does Tragitto support?</summary><p>iPhone (iOS 16+) and Android (Android 8+). Same account, same data, real-time sync between every device.</p></details>
+          <details class="faq-item reveal"><summary>What languages does Tragitto support?</summary><p>The app is available in English, Portuguese, and Spanish, and we're adding more.</p></details>
+        </div>
+      </section>
+
+    </article>
+  </div>
+</div>
+
+<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-banner reveal">
@@ -435,12 +592,12 @@
         <a href="https://apps.apple.com/app/tragitto/id6761928217">App Store</a>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;gap:16px;margin-top:12px">
-      <a href="/en/" style="font-size:13px;font-weight:700;color:var(--text)">EN</a>
-      <a href="/pt/" style="font-size:13px;font-weight:600;color:var(--muted)">PT</a>
-      <a href="/es/" style="font-size:13px;font-weight:600;color:var(--muted)">ES</a>
-      <a href="/de/" style="font-size:13px;font-weight:600;color:var(--muted)">DE</a>
-      <a href="/fr/" style="font-size:13px;font-weight:600;color:var(--muted)">FR</a>
+    <div class="footer-langs">
+      <a href="/en/" class="cur">EN</a>
+      <a href="/pt/">PT</a>
+      <a href="/es/">ES</a>
+      <a href="/de/">DE</a>
+      <a href="/fr/">FR</a>
     </div>
     <p class="footer-copy">&copy; 2026 Tragitto. Travel together, effortlessly.</p>
   </div>
@@ -450,20 +607,35 @@
   // Nav scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
 
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
+  const revObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); revObserver.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach(el => revObserver.observe(el));
+
+  // Scroll-spy: highlight the TOC link for the section in view
+  const tocLinks = Array.from(document.querySelectorAll('#toc a'));
+  const sections = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const setActive = (id) => {
+    tocLinks.forEach(a => {
+      const on = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('active', on);
+      if (on) {
+        // keep the active chip in view on the mobile horizontal strip
+        a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
+  };
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => spy.observe(s));
 </script>
 </body>
 </html>
