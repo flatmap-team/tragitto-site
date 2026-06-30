@@ -317,6 +317,21 @@
       flex-shrink: 0;
     }
 
+    /* --- Secondary action (store link under the primary CTA) --- */
+    .secondary-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(124,127,148, 0.25);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+
+    .secondary-link:hover { color: var(--text); }
+
     /* --- Hint text --- */
     .hint {
       margin-top: 16px;
@@ -326,6 +341,19 @@
       line-height: 1.5;
       font-weight: 500;
     }
+
+    /* Safari escape-hatch hint for in-app browsers (WhatsApp/Instagram). */
+    .browser-hint {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .browser-hint b { font-weight: 700; color: var(--text); }
 
     /* --- Footer --- */
     .footer {
@@ -482,17 +510,25 @@
     const appStoreUrl = 'https://apps.apple.com/app/tragitto/id6761928217';
     const storeUrl = isIOS ? appStoreUrl : playStoreUrl;
     const storeName = isIOS ? 'App Store' : 'Google Play';
-    // The canonical join link. iOS Universal Links + Android verified App Links
-    // make the OS open the installed app directly when this https URL is tapped
-    // — and, unlike the custom tragitto:// scheme, it survives a fresh install
-    // (tapping it again after install reopens the app on the join screen with
-    // the token intact, instead of a dead launch that drops the invite).
+    // The canonical https join link. A verified App Link (Android) / Universal
+    // Link (iOS) opens the installed app directly when tapped IN A REAL BROWSER
+    // — and survives a fresh install (tapping it post-install reopens the app on
+    // the join screen with the token intact, not a dead launch that drops it).
     const appLinkUrl = token ? `https://tragitto.app/join/${token}` : null;
-    // Custom-scheme fallback for an installed app. iOS Universal Links do NOT
-    // fire from a same-domain JS redirect (this page is on tragitto.app), so on
-    // iOS we open the installed app via tragitto:// instead. Harmless if the
-    // app isn't installed (Safari just stays put → timeout → store).
+    // Custom-scheme link to reopen an installed app. We need it for two cases:
+    //  (1) iOS Universal Links do NOT fire from a same-domain JS redirect (this
+    //      page is on tragitto.app), so we re-enter the app via tragitto://.
+    //  (2) The reason this page is even shown to an installed user: WhatsApp /
+    //      Instagram / Messenger open links in an IN-APP WebView, and iOS does
+    //      not fire Universal Links from a WebView — so the https link lands
+    //      here instead of the app even when the app is installed. tragitto://
+    //      is how we still bounce them in.
     const appSchemeUrl = token ? `tragitto://join/${token}` : null;
+
+    // Is this an in-app browser (WhatsApp/Instagram/FB/Messenger)? These are
+    // exactly where Universal Links silently fail, so we surface the Safari
+    // escape-hatch hint only here rather than nagging real Safari users.
+    const isInAppBrowser = /(FBAN|FBAV|Instagram|Line|WhatsApp|WeChat|Messenger|GSA)/i.test(ua);
 
     // Play Store icon SVG
     const playIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.541 2.541-8.958 5.098 6.417-7.64zm3.684-4.741l2.473 1.405a1 1 0 010 1.74l-2.326 1.321-2.793-2.793 2.646-1.673zM8.435 3.301l8.958 5.098-2.54 2.541-6.418-7.639z"/></svg>`;
@@ -503,29 +539,35 @@
     const card = document.getElementById('invite-card');
     const hint = document.getElementById('hint-text');
 
-    // CTA label. If the app is installed, the OS already intercepted the
-    // https://tragitto.app/join/... link before this page ever loaded — so by
-    // the time someone sees this button, they almost certainly need the store.
-    const ctaLabel = `Get on ${storeName}`;
+    // Primary CTA = OPEN THE APP, not "get the store". We can't know whether the
+    // app is installed (especially in a WhatsApp WebView, where the OS never got
+    // a chance to intercept the link), so we lead with "Open in Tragitto" and
+    // offer the store as a clearly secondary fallback. This is the core fix:
+    // the old page assumed reaching it meant "needs store" and hid the open-app
+    // path behind a misleading "Get on App Store" button.
+    const primaryLabel = 'Open in Tragitto';
 
-    // Try to open an installed app, then fall back to the store to install.
-    // - iOS: the https Universal Link won't fire from this same-domain JS
-    //   redirect, so we use the tragitto:// scheme to reopen an installed app.
-    // - Android: the verified https App Link reopens the installed app
-    //   reliably (and survives reinstall with the token), so prefer it.
-    function openAppOrStore() {
+    // Open the installed app via the channel that actually works here:
+    //  - iOS: the tragitto:// scheme (Universal Links won't fire from this page
+    //    / from an in-app WebView).
+    //  - Android: the verified https App Link (reliable, survives reinstall).
+    function openApp() {
       const openUrl = isIOS ? appSchemeUrl : appLinkUrl;
-      if (!token || !openUrl) { window.location.href = storeUrl; return; }
-      const start = Date.now();
+      if (!token || !openUrl) { goToStore(); return; }
       window.location.href = openUrl;
-      setTimeout(() => {
-        // If the app opened, the page was backgrounded and this timer was
-        // throttled — the elapsed time overshoots. Only redirect to the store
-        // when we're confident we're still here (app not installed).
-        if (Date.now() - start < 1500) {
-          window.location.href = storeUrl;
-        }
-      }, 1200);
+    }
+
+    function goToStore() {
+      window.location.href = storeUrl;
+    }
+
+    // Auto-attempt the app on load so an installed user is bounced straight in
+    // without tapping. If the app isn't installed the scheme/app-link is inert
+    // and the page simply stays put — the visible CTA then takes over. Guarded
+    // so it only runs once and never on the no-token (generic) variant.
+    function autoOpen() {
+      if (!token) return;
+      openApp();
     }
 
     if (!token) {
@@ -540,9 +582,9 @@
         <h1>Join a trip on Tragitto</h1>
         <p class="subtitle">Plan trips together, share bookings, and let AI handle the details.</p>
         <div class="divider"></div>
-        <a href="#" onclick="openAppOrStore(); return false;" class="cta-btn member">
+        <a href="#" onclick="goToStore(); return false;" class="cta-btn member">
           ${storeIcon}
-          ${ctaLabel}
+          Get on ${storeName}
         </a>
       `;
       hint.textContent = `Available on ${storeName}`;
@@ -582,13 +624,32 @@
 
         <div class="divider"></div>
 
-        <a href="#" onclick="openAppOrStore(); return false;" class="cta-btn safety" id="open-btn">
-          ${storeIcon}
-          ${ctaLabel}
+        <a href="#" onclick="openApp(); return false;" class="cta-btn safety" id="open-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          ${primaryLabel}
+        </a>
+        <a href="#" onclick="goToStore(); return false;" class="secondary-link" id="store-link">
+          Don't have the app? Get it on ${storeName}
         </a>
       `;
       hint.innerHTML = `Free on ${storeName} &middot; Create an account to follow along`;
     }
+
+    // Safari escape hatch: inside WhatsApp/Instagram's in-app browser, Universal
+    // Links never fire, so even an installed app can't be reached by the https
+    // link. Opening the page in real Safari makes the link work natively. Show
+    // this hint only in those in-app browsers, and only when we have a token.
+    if (token && isInAppBrowser) {
+      const bh = document.createElement('p');
+      bh.className = 'browser-hint';
+      const menu = isIOS ? 'Open in Safari' : 'Open in browser';
+      bh.innerHTML = `Not opening? Tap the <b>&middot;&middot;&middot;</b> menu &rarr; <b>${menu}</b> to jump straight to the app.`;
+      hint.insertAdjacentElement('afterend', bh);
+    }
+
+    // Bounce installed users straight into the app on load (no-op if not
+    // installed). Deferred a tick so the card is painted first as the fallback.
+    setTimeout(autoOpen, 350);
   </script>
 </body>
 </html>
